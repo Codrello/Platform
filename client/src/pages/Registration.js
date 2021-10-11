@@ -84,12 +84,15 @@ const data2 = [
   { Andijon: ["qorasuv", "dexqonobod"] },
   { Xorazm: ["nukus", "bekobod"] },
 ];
-const plainOptions = ["Apple", "Pear", "Orange"];
-const defaultCheckedList = ["Apple", "Orange"];
+const plainOptions = [
+  "Davlat xaridlarini tashkil etish va amalga oshirish tartibi",
+  "Budjet tashkilotlarida budjet hisobi va hisoboti",
+  "G‘aznachilik boshqarmasi va g‘aznachilik bo‘linmalari boshliqlari",
+];
 
 const RegistrationForm = ({ history }) => {
   const [organizationValue, setOrganizationValue] = useState("");
-  const [checkedList, setCheckedList] = useState(defaultCheckedList);
+  const [checkedList, setCheckedList] = useState([]);
   const [indeterminate, setIndeterminate] = useState(true);
   const [form] = Form.useForm();
   const onChange = (list) => {
@@ -99,6 +102,7 @@ const RegistrationForm = ({ history }) => {
   const { loading, isAuthanticated, error } = useSelector(
     (state) => state.auth
   );
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isAuthanticated) {
@@ -152,7 +156,6 @@ const RegistrationForm = ({ history }) => {
   const onFinishFailed = () => {
     message.error("Submit failed!");
   };
-  const dispatch = useDispatch();
 
   return (
     <div className="container">
@@ -209,7 +212,7 @@ const RegistrationForm = ({ history }) => {
         >
           <Input />
         </Form.Item>
-        <Form.Item name="datePicker" label="DatePicker" {...config}>
+        <Form.Item name="datePicker" label="Tug'ilgan Sanasi" {...config}>
           <DatePicker />
         </Form.Item>
         <Form.Item

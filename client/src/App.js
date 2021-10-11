@@ -15,21 +15,20 @@ import Burger from "./components/Burger/Burger";
 import Footer from "./components/Footer";
 import "./styles/app.css";
 import RedirectRoute from "./components/Redirect";
+import Profile from "./pages/Profile";
+import ProtectedRoute from "./components/routes/ProtectedRoute";
 
 function App() {
-  useEffect(() => {
-    axios
-      .post("https://express-admins.herokuapp.com/Log", {
-        username: "bak1roff",
-        password: "12345678",
-      })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("https://express-admins.herokuapp.com/Logout")
+  //     .then((response) => {
+  //       console.log(response);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, []);
   return (
     <div className="App" id="outer-container">
       <Router>
@@ -45,6 +44,7 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Registration} />
+            <ProtectedRoute path="/profile" component={Profile} />
             <Route path="*" component={NotFound} />
 
             {/* <Route exact path="/admin">

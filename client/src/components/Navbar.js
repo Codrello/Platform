@@ -19,7 +19,6 @@ export default function Navbar() {
   const { error, loading, isAuthanticated, user } = useSelector(
     (state) => state.auth
   );
-  const userDetails = user["user"];
   const searchIcon = () => {
     return <SearchIcon />;
   };
@@ -29,7 +28,7 @@ export default function Navbar() {
     ) : (
       <div style={{ textAlign: "center" }}>
         <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-        <span>{userDetails.name}</span>
+        <span>{user && user["user"].name}</span>
       </div>
     );
   };
