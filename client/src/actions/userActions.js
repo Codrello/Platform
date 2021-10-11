@@ -10,7 +10,7 @@ import {
 } from "../constants/userConstants";
 
 //Login
-export const login = (login, password) => async (dispatch) => {
+export const login = (username, password) => async (dispatch) => {
   try {
     dispatch({
       type: LOGIN_REQUEST,
@@ -22,7 +22,7 @@ export const login = (login, password) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post("/Log", { login, password }, config);
+    const { data } = await axios.post("/Log", { username, password }, config);
 
     dispatch({
       type: LOGIN_SUCCESS,
@@ -31,7 +31,7 @@ export const login = (login, password) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: LOGIN_FAIL,
-      payload: error.response.data,
+      payload: error,
     });
   }
 };
@@ -61,4 +61,25 @@ export const register = (userData) => async (dispatch) => {
       payload: error.response.data,
     });
   }
+};
+
+// // logout user
+// export const logout = () => async (dispatch) => {
+//   try {
+//     await axios.get("/api/v1/logout");
+//     dispatch({
+//       type: LOGOUT_SUCCESS,
+//     });
+//   } catch (error) {
+//     dispatch({
+//       type: LOGOUT_FAIL,
+//       payload: error.response.data.errMessage,
+//     });
+//   }
+// };
+
+export const clearErrors = () => async (dispatch) => {
+  dispatch({
+    type: CLEAR_ERRORS,
+  });
 };

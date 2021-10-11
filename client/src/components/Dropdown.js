@@ -2,8 +2,12 @@ import { Menu, Dropdown } from "antd";
 import "antd/dist/antd.css";
 import { DownOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function DropdownView(props) {
+  const { error, loading, isAuthanticated } = useSelector(
+    (state) => state.auth
+  );
   const menu = (
     <Menu>
       <Menu.Item key="0">
@@ -26,7 +30,7 @@ export default function DropdownView(props) {
   );
   return (
     <Dropdown
-      overlay={true ? menu : menu2}
+      overlay={!isAuthanticated ? menu : menu2}
       placement="bottomCenter"
       trigger={["click"]}
     >

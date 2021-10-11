@@ -4,13 +4,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { login, clearErrors } from "../actions/userActions";
 
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
-export default function LoginForm() {
+export default function LoginForm({ history }) {
+  const { loading, isAuthanticated, error } = useSelector(
+    (state) => state.auth
+  );
   const dispatch = useDispatch();
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
     dispatch(login(values.login, values.password));
   };
+
+  useEffect(() => {
+    if (isAuthanticated) {
+      history.push("/");
+    }
+    if (error) {
+      return alert(error);
+      dispatch(clearErrors());
+    }
+  }, [history, isAuthanticated, dispatch, error]);
 
   return (
     <div className="container">

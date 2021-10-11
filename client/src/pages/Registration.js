@@ -104,7 +104,11 @@ const RegistrationForm = ({ history }) => {
     if (isAuthanticated) {
       history.push("/login");
     }
-  }, [history, isAuthanticated]);
+    if (error) {
+      return alert();
+      dispatch(clearErrors());
+    }
+  }, [history, isAuthanticated, error, dispatch]);
   const onFinish = (values) => {
     const value = {
       ...values,
