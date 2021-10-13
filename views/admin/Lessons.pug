@@ -1,0 +1,20 @@
+extends adminLay
+block content
+  body.hold-transition.sidebar-mini.layout-fixed
+  .wrapper
+    include adminheader
+    //- h1 Lessons
+    .content-wrapper
+        section.content
+            .container-fluid
+                h1 Lessons
+                .row      
+                    - let colors = ["bg-secondary", "bg-warning", "bg-primary", "bg-danger", "bg-black", "bg-gray-dark", "bg-indigo", "bg-lightblue", "bg-navy", "bg-purple", "bg-fuchsia", "bg-pink", "bg-maroon", "bg-orange", "bg-lime", "bg-teal", "bg-olive"]
+                    - const rand = colors[Math.floor(Math.random() * colors.length)]
+                    each vid, i in video
+                            .card(class=rand style='width: 18rem; margin-left: 25px; margin-top: 50px;')
+                                video.card-img-top(style="height: 216px;" src=vid.Lesson  controls preload)
+                                .card-body
+                                  h3=vid.Subject
+                                  p.card-text=vid.Goal
+    include adminfooter

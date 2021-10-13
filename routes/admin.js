@@ -3,6 +3,7 @@ const router = express.Router();
 const path = require("path");
 const User = require("../model/Users")
 const Admins = require("../model/admins")
+const Video = require("../model/Video")
 const moment = require("moment");
 const Data = moment().format('YYYY.MM.DD/h:mm:a');
 const bcrypt = require("bcryptjs");
@@ -21,20 +22,62 @@ router.get('/Adminreg', function (req, res, next) {
     res.render('admin/Adminreg');
 
 });
+router.get('/Addvid', function (req, res, next) {
+    const admin = req.user;
+    User.find({}, (err, data) => {
+        if (err) {
+            console.log(err);
+        } else {
+            Admins.find({}, (err, Admin) => {
+                if (err) {
+
+                }
+                res.render('admin/Addvid', { data, admin, Admin });
+            })
+        }
+
+    })
+
+
+});
+router.get('/Lessons', function (req, res, next) {
+    User.find({}, (err, data) => {
+        if (err) {
+            console.log(err);
+        } else {
+            Admins.find({}, (err, Admin) => {
+                if (err) {
+                    console.log(err);
+                }
+                Video.find({}, (err, video) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    const admin = req.user;
+                    res.render('admin/Lessons', { data, admin, Admin, video });
+                })
+            })
+
+        }
+
+    })
+
+
+});
 router.get('/dashboard', function (req, res, next) {
     const admin = req.user;
     User.find({}, (err, data) => {
         if (err) {
             console.log(err);
-        }else{
+        } else {
             Admins.find({}, (err, Admin) => {
-                if(err){
+                if (err) {
 
                 }
-                res.render('admin/dashboard', { data, admin, Admin});
+                res.render('admin/dashboard', { data, admin, Admin });
             })
         }
-        
+
     })
 
 });
@@ -52,20 +95,20 @@ router.post('/', function (req, res, next) {
 
 const multerConf = {
     storage: multer.diskStorage({
-      destination: function (req, file, next) {
-        next(null, './public/images/imgadmin/upload');
-      },
-      filename: function (req, file, next) {
-        next(null, Date.now() + path.extname(file.originalname))
-      },
-  
+        destination: function (req, file, next) {
+            next(null, './public/images/imgadmin/upload');
+        },
+        filename: function (req, file, next) {
+            next(null, Date.now() + path.extname(file.originalname))
+        },
+
     })
-  
+
 };
 
 
 
-router.post('/Adminreg',  multer(multerConf).single("file", {maxCount: 1}), function (req, res, next) {
+router.post('/Adminreg', multer(multerConf).single("file", { maxCount: 1 }), function (req, res, next) {
 
     const username = req.body.AdminName;
     const Email = req.body.AdminEmail;
@@ -120,7 +163,46 @@ router.post('/Adminreg',  multer(multerConf).single("file", {maxCount: 1}), func
 
 });
 
+const VideoUpl = {
+    storage: multer.diskStorage({
+        destination: function (req, file, next) {
+            next(null, './public/videos/upload');
+        },
+        filename: function (req, file, next) {
+            next(null, Date.now() + path.extname(file.originalname))
+        },
 
+    })
+
+};
+
+
+
+router.post('/AddLessons', multer(VideoUpl).single("file", { maxCount: 1 }), function (req, res, next) {
+
+    const path = "/videos/upload\\" + req.file.filename
+
+    const Videos = new Video({
+        Subject: req.body.Mavzu,
+        Goal: req.body.Maqsad,
+        Lesson: path,
+        Date: Data,
+    })
+    Videos.save((err, data) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect('/admin/Lessons');
+            console.log(data);
+        }
+
+
+    })
+
+    // elements.forEach(video => {
+    //     res.render('admin/Lessons', {video});
+    // })
+});
 
 
 

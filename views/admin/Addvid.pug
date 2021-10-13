@@ -1,0 +1,34 @@
+extends adminLay
+block content
+    body.hold-transition.sidebar-mini
+        .wrapper
+            include adminheader
+            .content-wrapper
+                section.content
+                    .container-fluid
+                        .row
+                            .col-md-12
+                                form.card.card-info(action='/admin/AddLessons' method='post' enctype="multipart/form-data")
+                                  .card-header
+                                    h3.card-title Add Video Course
+                                  .card-body
+                                    .input-group.mb-3
+                                      .input-group-prepend
+                                        span.input-group-text 
+                                            i.fas.fa-chalkboard-teacher
+                                      input.form-control(name="Mavzu" type='text' placeholder='Mavzu')
+                                    .input-group.mb-3
+                                      .input-group-prepend
+                                        span.input-group-text 
+                                            i.fas.fa-chart-line
+                                      input.form-control(name="Maqsad" type='text' placeholder='Maqsad')
+                                    .custom-file
+                                        input#customFile(name="file" accept="video/*" type='file')
+                                    br
+                                    br
+                                    .social-auth-links.text-center.mt-2.mb-3
+                                          button.btn.btn-block.btn-primary
+                                            i.fas.fa-upload.mr-2
+                                            |  Start upload
+
+            include adminfooter
