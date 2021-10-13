@@ -1,0 +1,44 @@
+extends adminLay
+block content
+    body.hold-transition.register-page
+        != messages('message', locals)
+        if errors 
+          each error, i in errors
+            div(class="alert alert-danger") #{error.msg}
+        .register-box
+          .card.card-outline.card-primary
+            .card-header.text-center
+              a.h1(href='/admin/Adminreg')
+                b Add admin
+            .card-body
+              p.login-box-msg Register a new membership
+              form(action='/admin/Adminreg' method='post' enctype="multipart/form-data")
+                .input-group.mb-3
+                  input.form-control(name="AdminName" type='text' placeholder='Name')
+                  .input-group-append
+                    .input-group-text
+                      span.fas.fa-user
+                .input-group.mb-3
+                  input.form-control(name="AdminEmail" type='email' placeholder='Email')
+                  .input-group-append
+                    .input-group-text
+                      span.fas.fa-envelope
+                .input-group.mb-3
+                  input.form-control(name="AdminPass" type='password' placeholder='Password')
+                  .input-group-append
+                    .input-group-text
+                      span.fas.fa-lock
+                .custom-file
+                  input#customFile(name="file" accept="image/*" type='file')
+                br
+                br
+                .social-auth-links.text-center.mt-2.mb-3
+                  button.btn.btn-block.btn-primary
+                    i.fas.fa-user-plus.mr-2
+                    |  Register
+
+
+
+
+
+

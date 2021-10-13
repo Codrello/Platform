@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    != messages('message', locals)
+    if errors 
+      each error, i in errors
+        div(class="alert alert-danger") #{error.msg}
+    form(action="/Log" method="post")
+      .mb-3
+        label.form-label(for='exampleInputEmail1') Login
+        input#exampleInputEmail1.form-control(name="username" type='text' aria-describedby='emailHelp')
+      .mb-3
+        label.form-label(for='exampleInputPassword1') Password
+        input#exampleInputPassword1.form-control(name="password" type='password')
+      button.btn.btn-primary(type='submit') Submit

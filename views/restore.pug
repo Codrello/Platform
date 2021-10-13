@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    h1 Parolingizni qayta tiklash uchun foydalanuvchi elektron pochta manzilingizni quyidagi joyga yuboring. Agar sizni malumotlar bazasida topsak. Parol ni ozgartira olasiz.
+    != messages('message', locals)
+    if errors 
+      each error, i in errors
+        div(class="alert alert-danger") #{error.msg}
+    form(action="/restore" method="post")
+      .mb-3
+        label.form-label(for='exampleInputEmail1') Email
+        input#exampleInputEmail1.form-control(name="Resmail" type='email' aria-describedby='emailHelp')
+      button.btn.btn-primary(type='submit') Submit
+
+    

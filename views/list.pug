@@ -1,0 +1,71 @@
+extends layout
+
+block content
+    include header
+    h1 List
+    br
+    p User ID
+    li= user._id
+    br
+    p User Name
+    li= user.name
+    br
+    p User Familiyasi
+    li= user.Surname
+    br
+    p User Otasini ismi
+    li= user.FatherName
+    br
+    p User tug'ilgan sanasi
+    li= user.DateBirth
+    br
+    p User Login
+    li= user.username
+    br
+    p User Parol
+    li= user.password
+    br
+    p User JSHSHIR
+    li= user.JSHSHIR
+    br
+    p User Tashkilotingiz joylashgan hudud
+    li= user.Region
+    br
+    p User Tashkilotingiz joylashgan tuman
+    li= user.District
+    br
+    p User Jinsi
+    li= user.Jinsi
+    br
+    p User Elektron manzilingiz
+    li= user.Email
+    br
+    p User Ish telefoni
+    li= user.Workph
+    br
+    p User Mobil telefoni
+    li= user.Homeph
+    br
+    p User Muassasangiz
+    li= user.Muassasasi
+    br
+    p User Muassasangiz2
+    li= user.Muassasasi2
+    br
+    p User Bo'linma 
+    li= user.Division
+    br
+    p User Lavozimlar 
+    li= user.Position
+    br
+    p User Tanlagan Kursingiz
+    each val , i in user.Courses
+        li=i
+            |:
+            span=val
+    br
+    p User Rasmi 
+    img(src=user.UserImg alt='<текст>')
+    br
+    p Registratsiyadan otgan sanasi
+    li= user.Date

@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1 Profilni O'zgartirish
+    form(action="/Edit/"+ elem._id method="post")
+      .mb-3
+        label.form-label(for='exampleInputEmail1') Login
+        input#exampleInputEmail1.form-control(name="LgUpe" value=elem.username type='text' aria-describedby='emailHelp')
+      .mb-3
+        label.form-label(for='exampleInputEmail1') Password
+        input#exampleInputEmail1.form-control(name="PassUpe" type='password' aria-describedby='emailHelp')
+      button.btn.btn-primary(type='submit') Submit

@@ -1,0 +1,33 @@
+extends adminLay
+block content
+    body.hold-transition.login-page
+        //if message
+          .dan(style="text-align-center: center;")  
+            p.btn-block.btn-danger.btn-lg=message
+        != messages('message', locals)
+        if errors 
+          each error, i in errors
+            div(class="alert alert-danger") #{error.msg}
+        .login-box
+          // /.login-logo
+          .card.card-outline.card-primary(style="border-top: 3px solid #28a745")
+            .card-header.text-center
+              a.h1(href='/admin')
+                b Admin
+            .card-body
+              p.login-box-msg Login to start your session
+              form(action='/admin/' method='post')
+                .input-group.mb-3
+                  input.form-control(name="adminnm" type='text' placeholder='Name')
+                  .input-group-append
+                    .input-group-text
+                      span.fas.fa-user
+                .input-group.mb-3
+                  input.form-control(name="adminpass" type='password' placeholder='Password')
+                  .input-group-append
+                    .input-group-text
+                      span.fas.fa-lock          
+                .social-auth-links.text-center.mt-2.mb-3
+                  button.btn.btn-block.btn-success
+                    i.fas.fa-sign-in-alt.mr-2
+                    |  Login

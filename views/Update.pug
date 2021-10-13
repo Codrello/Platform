@@ -1,0 +1,113 @@
+extends layout
+
+block content
+        //!= messages('message', locals)
+        //if errors 
+        //  each error, i in errors
+        //    div(class="alert alert-danger") #{error.msg}
+        form.row.g-3.needs-validation(action="/UpdInf/"+ user._id method="post" )
+          .col-md-4.position-relative
+            label.form-label(for='validationTooltip01') Familiyasi 
+            input#validationTooltip01.form-control(name="UpdSurname" type='text' required )
+            .valid-tooltip
+              | Looks good!
+          .col-md-4.position-relative
+            label.form-label(for='validationTooltip01') Ismi  
+            input#validationTooltip01.form-control(name="Updname" type='text' required )
+            .valid-tooltip
+              | Looks good!
+          .col-md-4.position-relative
+            label.form-label(for='validationTooltip01') Otasining ismi 
+            input#validationTooltip01.form-control(name="UpdFathname" type='text' required )
+            .valid-tooltip
+              | Looks good!
+          .col-md-4.position-relative
+            label.form-label(for='validationTooltip02') Tug'ilgan sana 
+            input#validationTooltip02.form-control(name="UpddateBirth" type='date' required )
+            .valid-tooltip
+              | Looks good!
+          .col-md-6.position-relative
+            label.form-label(for='validationTooltip03') Tashkilotingiz joylashgan hudud
+            select.form-select(name="UpdHudud" aria-label='Default select example')
+                option(selected='') Tashkilotingiz joylashgan hudud tanlang
+                option(value='Toshkent shahri') Toshkent shahri
+                option(value='Andijon viloyati') Andijon viloyati
+                option(value='Namangan viloyati') Namangan viloyati
+            .invalid-tooltip
+              | Please provide a valid city.
+          .col-md-6.position-relative
+            label.form-label(for='validationTooltip03') Tashkilotingiz joylashgan tuman
+            select.form-select(name="UpdTuman" aria-label='Default select example')
+                option(selected='') Tashkilotingiz joylashgan tuman
+                option(value='Shayxontohur tumani') Shayxontohur tumani
+                option(value='Hamza tumani') Hamza tumani
+                option(value='Mirobod tumani') Mirobod tumani
+            .invalid-tooltip
+              | Please provide a valid city.
+          .col-md-6.position-relative
+            label.form-label(for='validationTooltip03') Jinsi 
+            select.form-select(name="UpdSex" aria-label='Default select example')
+                option(selected='') Jinsi
+                option(value='Erkak') Erkak
+                option(value='Ayol') Ayol
+            .invalid-tooltip
+              | Please provide a valid city.
+          .col-md-3.position-relative
+            label.form-label(for='validationTooltip05') Elektron manzilingizni kiriting
+            input#validationTooltip05.form-control(name="Updemail" type='email' required)
+            .invalid-tooltip
+              | Please provide a valid zip.
+          .col-md-3.position-relative
+            label.form-label(for='validationTooltip05') Ish telefoni
+            input#validationTooltip05.form-control(name="Updwkphone" type='number' required)
+            .invalid-tooltip
+              | Please provide a valid zip.
+          .col-md-3.position-relative
+            label.form-label(for='validationTooltip05') Mobil telefoni
+            input#validationTooltip05.form-control(name="Updmlphone" type='number' required)
+            .invalid-tooltip
+              | Please provide a valid zip.
+          //  .col-md-6.position-relative
+            label.form-label(for='validationTooltip03') Muassasangizni tanlang 
+            select.form-select(name="Muassasa" aria-label='Default select example')
+                option(selected='') Muassasangizni tanlang...
+                option(value='VAZIRLIKLAR') VAZIRLIKLAR
+                option(value='DAVLAT QO‘MITALARI') DAVLAT QO‘MITALARI
+                option(value='DAVLAT INSPEKSIYALARI') DAVLAT INSPEKSIYALARI
+            .invalid-tooltip
+              | Please provide a valid city.
+          //.col-md-6.position-relative
+            label.form-label(for='validationTooltip03') Muassasangizni tanlang 
+            select.form-select(name="Muassasa2" aria-label='Default select example')
+                option(selected='') Muassasangizni tanlang...
+                option(value='O‘zbekiston Respublikasi Transport vazirligi') O‘zbekiston Respublikasi Transport vazirligi
+                option(value='O‘zbekiston Respublikasi Favqulodda vaziyatlar vazirligi') O‘zbekiston Respublikasi Favqulodda vaziyatlar vazirligi
+                option(value='O‘zbekiston Respublikasi Qurilish vazirligi') O‘zbekiston Respublikasi Qurilish vazirligi
+            .invalid-tooltip
+              | Please provide a valid city.
+          //.col-md-3.position-relative
+            label.form-label(for='validationTooltip05') Bo'linma 
+            input#validationTooltip05.form-control(name="Bol" type='text' required)
+            .invalid-tooltip
+              | Please provide a valid zip.
+          //.col-md-3.position-relative
+            label.form-label(for='validationTooltip05') Lavozimlar
+            input#validationTooltip05.form-control(name="Lavoz" type='text' required)
+            .invalid-tooltip
+              | Please provide a valid zip.
+          //p Kurslaringiz
+          //.input-group.mb-3
+          //  .input-group-text
+          //    input.form-check-input(name="Course" type='checkbox' value='Davlat xaridlarini tashkil etish va amalga oshirish tartibi' aria-label='Checkbox for following text input')
+          //  input.form-control(type='text' value="Davlat xaridlarini tashkil etish va amalga oshirish tartibi" aria-label='Text input with checkbox')
+          //.input-group.mb-3
+          //  .input-group-text
+          //    input.form-check-input(name="Course" type='checkbox' value='Budjet tashkilotlarida budjet hisobi va hisoboti' aria-label='Checkbox for following text input')
+          //  input.form-control(type='text' value="Budjet tashkilotlarida budjet hisobi va hisoboti" aria-label='Text input with checkbox')
+          //.input-group.mb-3
+          //  .input-group-text
+          //    input.form-check-input(name="Course" type='checkbox' value='G‘aznachilik boshqarmasi va g‘aznachilik bo‘linmalari boshliqlari' aria-label='Checkbox for following text input')
+          //  input.form-control(type='text' value="G‘aznachilik boshqarmasi va g‘aznachilik bo‘linmalari boshliqlari" aria-label='Text input with checkbox')
+
+          .col-12
+            button.btn.btn-primary(type='submit') Submit form
