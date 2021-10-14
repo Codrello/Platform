@@ -115,8 +115,8 @@ const Userupload = {
 
 };
 
-/* POST users listing.  */
-router.post('/Reg', multer(Userupload).single("file", {maxCount: 1}), function (req, res, next) {
+/* POST users listing. multer(Userupload).single("file", {maxCount: 1}), */
+router.post('/Reg',  function (req, res, next) {
   const name = req.body.name;
   const Surname = req.body.Surname;
   const Fathname = req.body.Fathname;
@@ -135,7 +135,7 @@ router.post('/Reg', multer(Userupload).single("file", {maxCount: 1}), function (
   const Bol = req.body.Bol;
   const Lavoz = req.body.Lavoz;
   const Course = req.body.Course;
-  const file = req.body.file;
+  // const file = req.body.file;
 
   req.checkBody('Surname', `Familiyani kriritishingz kerak`).notEmpty();
   req.checkBody('name', `Ismni kriritishingz kerak`).notEmpty();
@@ -186,7 +186,7 @@ router.post('/Reg', multer(Userupload).single("file", {maxCount: 1}), function (
       Division: Bol,
       Position: Lavoz,
       Courses: Course,
-      UserImg: path,
+      // UserImg: path,
       type: "User",
       Date: Data
     })
