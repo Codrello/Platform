@@ -1,20 +1,24 @@
 import React from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
+import "./style.css";
+import InnerHome from "./InnerHome";
+import Features from "./Features";
 
 export default function Home() {
   return (
-    <div
-      className="container"
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
-    >
-      {" "}
-      <Box sx={{ display: "flex" }}>
+    <div className="Home">
+      <div
+        className="container"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        {" "}
+        {/* <Box sx={{ display: "flex" }}>
         <CircularProgress color="secondary" />
       </Box>
       <h2 style={{ marginTop: "10px", color: "red" }}> МЫ СКОРО ПРИЕДЕМ </h2>
@@ -26,7 +30,10 @@ export default function Home() {
         style={{ backgroundColor: "red", color: "white", fontSize: "36px" }}
       >
         на разработке
-      </marquee>
+      </marquee> */}
+        <InnerHome />
+        <Features />
+      </div>
     </div>
   );
 }

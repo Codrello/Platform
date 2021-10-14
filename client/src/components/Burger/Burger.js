@@ -103,6 +103,16 @@ function Burger(props) {
       >
         <FiberNewIcon className="navbarIcon" /> Yangiliklar
       </NavLink>
+      <NavLink
+        activeStyle={{
+          fontWeight: "bold",
+          color: "#2175f5",
+        }}
+        to="/admin"
+        onClick={() => closeMenu()}
+      >
+        <PersonIcon className="navbarIcon" /> Admin Panel
+      </NavLink>
     </Menu>
   );
 }

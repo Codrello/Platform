@@ -7,7 +7,17 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { register, clearErrors } from "../actions/userActions";
 import "antd/dist/antd.css";
-import { InputNumber, Cascader, Select, Row, Col, AutoComplete } from "antd";
+import {
+  InputNumber,
+  Cascader,
+  Upload,
+  Select,
+  Row,
+  Col,
+  AutoComplete,
+} from "antd";
+import avatar from "./images/avatar.jpg";
+import { UploadOutlined } from "@ant-design/icons";
 const { Option } = Select;
 const CheckboxGroup = Checkbox.Group;
 const residences = [
@@ -89,7 +99,6 @@ const plainOptions = [
   "Budjet tashkilotlarida budjet hisobi va hisoboti",
   "G‘aznachilik boshqarmasi va g‘aznachilik bo‘linmalari boshliqlari",
 ];
-
 const RegistrationForm = ({ history }) => {
   const [organizationValue, setOrganizationValue] = useState("");
   const [checkedList, setCheckedList] = useState([]);
@@ -99,20 +108,29 @@ const RegistrationForm = ({ history }) => {
     setCheckedList(list);
     setIndeterminate(!!list.length && list.length < plainOptions.length);
   };
-  const { loading, isAuthanticated, error } = useSelector(
-    (state) => state.auth
-  );
+  const { loading, login, error, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isAuthanticated) {
+    if (login) {
       history.push("/login");
     }
     if (error) {
-      return alert();
+      console.log(error);
       dispatch(clearErrors());
     }
-  }, [history, isAuthanticated, error, dispatch]);
+  }, [history, login, error, dispatch]);
+
+  const normFile = (e) => {
+    console.log("Upload event:", e);
+
+    if (Array.isArray(e)) {
+      return e;
+    }
+
+    return e && e.fileList;
+  };
+
   const onFinish = (values) => {
     const value = {
       ...values,
@@ -130,18 +148,20 @@ const RegistrationForm = ({ history }) => {
       Tuman: value.organizationLocationCity,
       Sex: value.gender,
       email: value.email,
-      wkphone: value.phone,
-      mlphone: value.mobilephone,
+      wkphone: `998${value.phone}`,
+      mlphone: `998${value.mobilephone}`,
       Muassasa: "hokimyat",
       Muassasa2: "hokimyat",
       Bol: value.bolinma,
       Lavoz: value.position,
       Course: value.courses,
+      // file: avatar,
     };
-
+    console.log(formData);
     dispatch(register(formData));
     message.success("Submit success!");
   };
+
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
       <div
@@ -267,6 +287,17 @@ const RegistrationForm = ({ history }) => {
         >
           <Input.Password />
         </Form.Item>
+        {/* <Form.Item
+          name="upload"
+          label="Upload"
+          valuePropName="fileList"
+          getValueFromEvent={normFile}
+          extra="longgggggggggggggggggggggggggggggggggg"
+        >
+          <Upload name="logo" action="/upload.do" listType="picture">
+            <Button icon={<UploadOutlined />}>Click to upload</Button>
+          </Upload>
+        </Form.Item> */}
         <Form.Item
           name="passportNumber"
           label="JSHSHIR raqami"

@@ -7,12 +7,12 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
 export default function LoginForm({ history }) {
-  const { loading, isAuthanticated, error } = useSelector(
+  const { loading, isAuthanticated, error, user } = useSelector(
     (state) => state.auth
   );
   const dispatch = useDispatch();
   const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+    console.log(values);
     dispatch(login(values.login, values.password));
   };
 
@@ -21,7 +21,7 @@ export default function LoginForm({ history }) {
       history.push("/");
     }
     if (error) {
-      return alert(error);
+      console.log(error);
       dispatch(clearErrors());
     }
   }, [history, isAuthanticated, dispatch, error]);
@@ -76,13 +76,19 @@ export default function LoginForm({ history }) {
         </Form.Item> */}
 
         <Form.Item>
-          <Button
-            type="primary"
-            htmlType="submit"
-            className="login-form-button"
-          >
-            Log in
-          </Button>
+          {!loading ? (
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="login-form-button"
+            >
+              Log in
+            </Button>
+          ) : (
+            <Button type="primary" loading>
+              Loading
+            </Button>
+          )}
           Or <Link to="/signup">register now!</Link>
         </Form.Item>
       </Form>

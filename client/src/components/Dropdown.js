@@ -1,13 +1,20 @@
-import { Menu, Dropdown } from "antd";
+import { Menu, Dropdown, message } from "antd";
 import "antd/dist/antd.css";
 import { DownOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../actions/userActions";
 
 export default function DropdownView(props) {
   const { error, loading, isAuthanticated } = useSelector(
     (state) => state.auth
   );
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+    dispatch(logout());
+    message.success("Muvafaqqiyatli Tizimdan Chiqildi");
+  };
   const menu = (
     <Menu>
       <Menu.Item key="0">
@@ -25,6 +32,11 @@ export default function DropdownView(props) {
       </Menu.Item>
       <Menu.Item key="1">
         <Link to="/card">Savatcha</Link>
+      </Menu.Item>
+      <Menu.Item key="2">
+        <Link to="/" onClick={logoutHandler}>
+          Logout
+        </Link>
       </Menu.Item>
     </Menu>
   );

@@ -19,6 +19,7 @@ export default function Navbar() {
   const { error, loading, isAuthanticated, user } = useSelector(
     (state) => state.auth
   );
+
   const searchIcon = () => {
     return <SearchIcon />;
   };
@@ -28,7 +29,7 @@ export default function Navbar() {
     ) : (
       <div style={{ textAlign: "center" }}>
         <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-        <span>{user && user["user"].name}</span>
+        <span>{user["user"] ? user["user"].name : "User"}</span>
       </div>
     );
   };
@@ -40,16 +41,10 @@ export default function Navbar() {
     <div className="Navbar" id="outer-container">
       <div id="page-wrap" className="navbar">
         <Link className="navbarLogo" to="/">
-          <img
-            src="https://via.placeholder.com/300x400"
-            alt="BookMarket24_Logo"
-            className="navbar-logo"
-            width="200"
-            height="75"
-          />
+          <span>O'quv </span>platformasi
         </Link>
-        <ModalView className="navbar-search" children={searchIcon()} />
-        <SearchView className="navbarSearchInput" />
+        {/* <ModalView className="navbar-search" children={searchIcon()} />
+        <SearchView className="navbarSearchInput" /> */}
         <div
           className="navbarActions"
           style={{

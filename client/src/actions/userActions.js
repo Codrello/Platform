@@ -9,8 +9,15 @@ import {
   LOAD_USER_REQUEST,
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAIL,
   CLEAR_ERRORS,
 } from "../constants/userConstants";
+import {
+  registration,
+  login as Login,
+  logout as Logout,
+} from "../constants/apiConstants";
 
 //Login
 export const login = (username, password) => async (dispatch) => {
@@ -25,7 +32,11 @@ export const login = (username, password) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post("/Log", { username, password }, config);
+    const { data } = await axios.post(
+      Login,
+      { username: username, password: password },
+      config
+    );
 
     dispatch({
       type: LOGIN_SUCCESS,
@@ -52,8 +63,8 @@ export const register = (userData) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post("/Reg", userData, config);
-
+    const { data } = await axios.post(registration, userData, config);
+    console.log(userData);
     dispatch({
       type: REGISTER_USER_SUCCESS,
       payload: data,
@@ -61,7 +72,7 @@ export const register = (userData) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: REGISTER_USER_FAIL,
-      payload: error.response.data,
+      payload: error,
     });
   }
 };
@@ -84,20 +95,20 @@ export const loadUser = () => async (dispatch) => {
     });
   }
 };
-// // logout user
-// export const logout = () => async (dispatch) => {
-//   try {
-//     await axios.get("/api/v1/logout");
-//     dispatch({
-//       type: LOGOUT_SUCCESS,
-//     });
-//   } catch (error) {
-//     dispatch({
-//       type: LOGOUT_FAIL,
-//       payload: error.response.data.errMessage,
-//     });
-//   }
-// };
+// logout user
+export const logout = () => async (dispatch) => {
+  try {
+    await axios.get(Logout);
+    dispatch({
+      type: LOGOUT_SUCCESS,
+    });
+  } catch (error) {
+    dispatch({
+      type: LOGOUT_FAIL,
+      payload: error,
+    });
+  }
+};
 
 export const clearErrors = () => async (dispatch) => {
   dispatch({

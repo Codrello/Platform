@@ -2,6 +2,9 @@
   --main--color: #452473;
   --text-color: #636271;
   --primary: #2175f5;
+  --purple: #968640;
+  --pink: #529ce2;
+  --gradient: linear-gradient(90deg, var(--purple), var(--pink));
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
@@ -17,22 +20,18 @@
   margin-right: 80px;
 }
 
-.navbar-logo {
-  object-fit: cover;
-}
 .navbarLogo {
-  flex: 1 !important;
+  font-size: 2.5rem;
+  color: var(--purple);
+}
+.navbarLogo span {
+  color: var(--pink);
 }
 .navbar .ant-space {
-  flex: 10;
   margin: 0 50px;
 }
 .navbar-search {
   display: none !important;
-}
-
-.navbarActions {
-  flex: 1;
 }
 
 .navList {
@@ -70,9 +69,6 @@
   .header {
     margin: 20px 10px 0 10px;
   }
-  .navbarActions {
-    flex: 2;
-  }
 }
 
 @media (max-width: 1000px) {
@@ -85,13 +81,9 @@
 }
 @media (max-width: 800px) {
   .navbar .ant-space {
-    flex: 10;
     margin: 0 20px;
   }
 
-  .navbarActions {
-    flex: 3;
-  }
   .navbar {
     margin-right: 50px;
   }
@@ -111,9 +103,6 @@
     margin: 0 20px;
     display: none;
   }
-  .navbarActions {
-    flex: 1;
-  }
 }
 @media (max-width: 500px) {
   .navbar-logo {
@@ -122,6 +111,6 @@
     margin-right: 25px;
   }
   .navbar {
-    margin-right: 30px;
+    margin-right: 40px;
   }
 }
