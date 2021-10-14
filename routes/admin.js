@@ -32,7 +32,7 @@ router.get('/Addvid', function (req, res, next) {
                 if (err) {
 
                 }
-                res.render('admin/Addvid', { data, admin, Admin });
+                res.render('admin/Addvid', { data, admin, Admin, title: "Addvid" });
             })
         }
 
@@ -54,7 +54,7 @@ router.get('/Lessons', function (req, res, next) {
                         console.log(err);
                     }
                     const admin = req.user;
-                    res.render('admin/Lessons', { data, admin, Admin, video });
+                    res.render('admin/Lessons', { data, admin, Admin, video, title: "Lessons" });
                 })
             })
 
@@ -74,7 +74,14 @@ router.get('/dashboard', function (req, res, next) {
                 if (err) {
 
                 }
-                res.render('admin/dashboard', { data, admin, Admin });
+                Video.find({}, (err, video) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    const admin = req.user;
+                    res.render('admin/dashboard', { data, admin, Admin, video, title: "dashboard" });
+                })
+                
             })
         }
 

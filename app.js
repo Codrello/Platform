@@ -87,6 +87,7 @@ app.use('/admin', adminRouter);
 // Admin settings
 app.use("/admin", express.static(path.join(__dirname, 'public')));
 app.use("/admin/:any", express.static(path.join(__dirname, 'public')));
+app.use("/admin/*", express.static(path.join(__dirname, '/public/videos/upload/')));
 
 //Passport
 //User  INIT 
