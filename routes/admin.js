@@ -81,7 +81,45 @@ router.get('/dashboard', function (req, res, next) {
                     const admin = req.user;
                     res.render('admin/dashboard', { data, admin, Admin, video, title: "dashboard" });
                 })
-                
+
+            })
+        }
+
+    })
+
+});
+router.get('/Userinf', function (req, res, next) {
+    User.find({}, (err, data) => {
+        if (err) {
+            console.log(err);
+        } else {
+            Admins.find({}, (err, Admin) => {
+                const admin = req.user;
+                if (err) {
+                    console.log(err);
+                    
+                }
+
+                res.render('admin/Userinf', { data, admin, Admin, title: "Userinf" });
+            })
+        }
+
+    })
+
+});
+router.get('/Admininf', function (req, res, next) {
+    User.find({}, (err, data) => {
+        if (err) {
+            console.log(err);
+        } else {
+            Admins.find({}, (err, Admin) => {
+                const admin = req.user;
+                if (err) {
+                    console.log(err);
+                    
+                }
+
+                res.render('admin/Admininf', { data, admin, Admin, title: "Admininf" });
             })
         }
 

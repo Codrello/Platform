@@ -1,0 +1,52 @@
+extends adminLay
+block content
+  body.hold-transition.sidebar-mini
+    .wrapper
+      include adminheader
+      br
+      br
+      .content-wrapper
+        section.content
+          .container-fluid
+            .row
+              .col-12
+                .card
+                  .card-header
+                    h3.card-title Users Information
+                    .card-tools
+                      .input-group.input-group-sm(style='width: 150px;')
+                        input.form-control.float-right(type='text' name='table_search' placeholder='Search')
+                        .input-group-append
+                          button.btn.btn-default(type='submit')
+                            i.fas.fa-search
+                  // /.card-header
+                  .card-body.table-responsive.p-0(style='height: 700px;')
+                    table.table.table-head-fixed.text-nowrap
+                      thead
+                        tr
+                          th №
+                          th ID
+                          th User
+                          th DateBirth
+                          th Email
+                          th Workph
+                          th Gander
+                          th Division
+                          th Position
+                          //th UserImage
+                      tbody
+                        each val, i in data
+                            tr
+                              td=i
+                              td=val._id
+                              td=val.name
+                              td=val.DateBirth
+                              td
+                                span.tag.tag-success=val.Email
+                              td=val.Workph
+                              td=val.Jinsi
+                              td=val.Division
+                              td=val.Position
+                              //td
+                                img(src="images/userimg/upload/1634137967391.gif"  style="width: 80px; height:40px;" alt="jpg")
+      include adminfooter

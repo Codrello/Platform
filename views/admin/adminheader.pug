@@ -5,9 +5,7 @@ nav.main-header.navbar.navbar-expand.navbar-white.navbar-light
         a.nav-link(data-widget='pushmenu' href='#' role='button')
           i.fas.fa-bars
       li.nav-item.d-none.d-sm-inline-block
-        a.nav-link(href='index3.html') Home
-      li.nav-item.d-none.d-sm-inline-block
-        a.nav-link(href='#') Contact
+        a.nav-link(href='/admin/dashboard') Home
     // Right navbar links
     ul.navbar-nav.ml-auto
       // Navbar Search
@@ -113,7 +111,7 @@ aside.main-sidebar.sidebar-dark-primary.elevation-4
           
           if title == "dashboard"
             - let Addclass = "active"
-            li.nav-item.menu-open
+            li.nav-item
               a.nav-link(class=Addclass href='/admin/dashboard')
                 i.nav-icon.fas.fa-tachometer-alt
                 p
@@ -128,9 +126,19 @@ aside.main-sidebar.sidebar-dark-primary.elevation-4
                 i.fas.fa-video.nav-icon
                 p
                   | Darslar
+            li.nav-item
+              a.nav-link(href='/admin/Userinf')
+                i.nav-icon.fas.fa-table
+                p
+                  | Users Information
+            li.nav-item
+              a.nav-link(href='/admin/Admininf')
+                i.nav-icon.fas.fa-table
+                p
+                  | Admins Information
           if title == "Addvid"
             - let Addclass = "active"
-            li.nav-item.menu-open
+            li.nav-item
               a.nav-link(href='/admin/dashboard')
                 i.nav-icon.fas.fa-tachometer-alt
                 p
@@ -145,9 +153,19 @@ aside.main-sidebar.sidebar-dark-primary.elevation-4
                 i.fas.fa-video.nav-icon
                 p
                   | Darslar
+            li.nav-item
+              a.nav-link(href='/admin/Userinf')
+                i.nav-icon.fas.fa-table
+                p
+                  | Users Information
+            li.nav-item
+              a.nav-link(href='/admin/Admininf')
+                i.nav-icon.fas.fa-table
+                p
+                  | Admins Information
           if title == "Lessons"
             - let Addclass = "active"
-            li.nav-item.menu-open
+            li.nav-item
               a.nav-link(href='/admin/dashboard')
                 i.nav-icon.fas.fa-tachometer-alt
                 p
@@ -162,54 +180,81 @@ aside.main-sidebar.sidebar-dark-primary.elevation-4
                 i.fas.fa-video.nav-icon
                 p
                   | Darslar
+            li.nav-item
+              a.nav-link(href='/admin/Userinf')
+                i.nav-icon.fas.fa-table
+                p
+                  | Users Information
+            li.nav-item
+              a.nav-link(href='/admin/Admininf')
+                i.nav-icon.fas.fa-table
+                p
+                  | Admins Information
+          if title == "Userinf"
+            - let Addclass = "active"
+            li.nav-item
+              a.nav-link(href='/admin/dashboard')
+                i.nav-icon.fas.fa-tachometer-alt
+                p
+                  | Dashboard
+            li.nav-item
+              a.nav-link(href='/admin/Addvid/')
+                i.fas.fa-plus-square.nav-icon
+                p
+                  | Dars qo'shish
+            li.nav-item
+              a.nav-link(href='/admin/Lessons')
+                i.fas.fa-video.nav-icon
+                p
+                  | Darslar
+            li.nav-item
+              a.nav-link(class=Addclass href='/admin/Userinf')
+                i.nav-icon.fas.fa-table
+                p
+                  | Users Information
+            li.nav-item
+              a.nav-link(href='/admin/Admininf')
+                i.nav-icon.fas.fa-table
+                p
+                  | Admins Information         
+          if title == "Admininf"
+            - let Addclass = "active"
+            li.nav-item
+              a.nav-link(href='/admin/dashboard')
+                i.nav-icon.fas.fa-tachometer-alt
+                p
+                  | Dashboard
+            li.nav-item
+              a.nav-link(href='/admin/Addvid/')
+                i.fas.fa-plus-square.nav-icon
+                p
+                  | Dars qo'shish
+            li.nav-item
+              a.nav-link(href='/admin/Lessons')
+                i.fas.fa-video.nav-icon
+                p
+                  | Darslar
+            li.nav-item
+              a.nav-link(href='/admin/Userinf')
+                i.nav-icon.fas.fa-table
+                p
+                  | Users Information
+            li.nav-item
+              a.nav-link(class=Addclass href='/admin/Admininf')
+                i.nav-icon.fas.fa-table
+                p
+                  | Admins Information       
           li.nav-item
-            a.nav-link(href='#')
-              i.nav-icon.fas.fa-tree
+            a.nav-link(href='/admin/Adminreg')
+              i.nav-icon.fas.fa-user-plus
               p
-                | UI Elements
-                i.fas.fa-angle-left.right
-          li.nav-item
-            a.nav-link(href='#')
-              i.nav-icon.fas.fa-edit
-              p
-                | Forms
-                i.fas.fa-angle-left.right
-            ul.nav.nav-treeview
-              li.nav-item
-                a.nav-link(href='pages/forms/general.html')
-                  i.far.fa-circle.nav-icon
-                  p General Elements
-              li.nav-item
-                a.nav-link(href='pages/forms/advanced.html')
-                  i.far.fa-circle.nav-icon
-                  p Advanced Elements
-              li.nav-item
-                a.nav-link(href='pages/forms/editors.html')
-                  i.far.fa-circle.nav-icon
-                  p Editors
-              li.nav-item
-                a.nav-link(href='pages/forms/validation.html')
-                  i.far.fa-circle.nav-icon
-                  p Validation
+                | Add Admin
           li.nav-item
             a.nav-link(href='#')
               i.nav-icon.fas.fa-table
               p
                 | Tables
                 i.fas.fa-angle-left.right
-            ul.nav.nav-treeview
-              li.nav-item
-                a.nav-link(href='pages/tables/simple.html')
-                  i.far.fa-circle.nav-icon
-                  p Simple Tables
-              li.nav-item
-                a.nav-link(href='pages/tables/data.html')
-                  i.far.fa-circle.nav-icon
-                  p DataTables
-              li.nav-item
-                a.nav-link(href='pages/tables/jsgrid.html')
-                  i.far.fa-circle.nav-icon
-                  p jsGrid
           li.nav-header EXAMPLES
           li.nav-item
             a.nav-link(href='pages/calendar.html')
