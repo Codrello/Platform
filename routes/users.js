@@ -102,20 +102,20 @@ router.post('/Edit/:id', function (req, res, next) {
 
 });
 
-const Userupload = {
-  storage: multer.diskStorage({
-    destination: function (req, file, next) {
-      next(null, './public/images/userimg/upload');
-    },
-    filename: function (req, file, next) {
-      next(null, Date.now() + path.extname(file.originalname))
-    },
+// const Userupload = {
+//   storage: multer.diskStorage({
+//     destination: function (req, file, next) {
+//       next(null, './public/images/userimg/upload');
+//     },
+//     filename: function (req, file, next) {
+//       next(null, Date.now() + path.extname(file.originalname))
+//     },
 
-  })
+//   })
 
-};
+// };
 
-/* POST users listing. multer(Userupload).single("file", {maxCount: 1}), */
+/* POST users listing. multer(Userupload).single("file", {maxCount: 1}), const path = "/images/userimg/upload\\" + req.file.filename;  */
 router.post('/Reg',  function (req, res, next) {
   const name = req.body.name;
   const Surname = req.body.Surname;
@@ -166,7 +166,6 @@ router.post('/Reg',  function (req, res, next) {
   }
 
   else {
-    const path = "/images/userimg/upload\\" + req.file.filename;
     const Users = new User({
       name: name,
       Surname: Surname,
