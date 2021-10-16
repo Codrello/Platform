@@ -1,10 +1,12 @@
 const Passport = require("../passport/passport");
 
 const MdAdmin = (req, res, next) => {
+    const admin = req.user;
+    // const cook = req.headers.cookie;
 
-    if(req.user.type == "Admin"){
-        next();
-    }else{
+    if (admin.type == "Admin") {
+        next();  
+    }else {
         res.redirect("/admin/");
     }
 }

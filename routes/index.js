@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 /* GET home page. */
-router.get('/list', function(req, res, next) {
+router.get('/list', Login, function(req, res, next) {
   
   const user = req.user;
 

@@ -16,13 +16,12 @@ const multer = require("multer");
 router.get('/', function (req, res, next) {
     res.render('admin/Adminlog');
 
-
 });
-router.get('/Adminreg', function (req, res, next) {
+router.get('/Adminreg', MdAdmin,function (req, res, next) {
     res.render('admin/Adminreg');
 
 });
-router.get('/Addvid', function (req, res, next) {
+router.get('/Addvid', MdAdmin, function (req, res, next) {
     const admin = req.user;
     User.find({}, (err, data) => {
         if (err) {
@@ -40,7 +39,7 @@ router.get('/Addvid', function (req, res, next) {
 
 
 });
-router.get('/Lessons', function (req, res, next) {
+router.get('/Lessons', MdAdmin, function (req, res, next) {
     User.find({}, (err, data) => {
         if (err) {
             console.log(err);
@@ -64,7 +63,7 @@ router.get('/Lessons', function (req, res, next) {
 
 
 });
-router.get('/dashboard', function (req, res, next) {
+router.get('/dashboard', MdAdmin, function (req, res, next) {
     const admin = req.user;
     User.find({}, (err, data) => {
         if (err) {
@@ -88,7 +87,7 @@ router.get('/dashboard', function (req, res, next) {
     })
 
 });
-router.get('/Userinf', function (req, res, next) {
+router.get('/Userinf', MdAdmin, function (req, res, next) {
     User.find({}, (err, data) => {
         if (err) {
             console.log(err);
@@ -107,7 +106,7 @@ router.get('/Userinf', function (req, res, next) {
     })
 
 });
-router.get('/Admininf', function (req, res, next) {
+router.get('/Admininf', MdAdmin, function (req, res, next) {
     User.find({}, (err, data) => {
         if (err) {
             console.log(err);
@@ -239,6 +238,7 @@ router.post('/AddLessons', multer(VideoUpl).single("file", { maxCount: 1 }), fun
         } else {
             res.redirect('/admin/Lessons');
             console.log(data);
+            
         }
 
 

@@ -31,8 +31,16 @@ app.use(function(req, res, next) {
 // Express_Sessions 
 app.use(session({
   secret: 'keyboard cat',
-  resave: true,
-  saveUninitialized: true
+  // resave: true,
+  // saveUninitialized: true
+  resave: false,
+  saveUninitialized: false,
+  cookie  : {
+      path: '/', 
+      httpOnly: true,
+      secure: false,
+      maxAge: 7200000,   
+  }
 }));
 require('./passport/passport')(passport)
 app.use(passport.initialize());
@@ -79,6 +87,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use('/', indexRouter);
 app.use('/', usersRouter);

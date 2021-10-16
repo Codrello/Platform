@@ -20,7 +20,8 @@ const User = new Schema({
     },
     username:{
         type: String,
-        required: true
+        required: true,
+        unique: true,
     },
     password:{
         type: String,
@@ -44,7 +45,8 @@ const User = new Schema({
     },
     Email:{
         type: String,
-        required: true
+        required: true,
+        unique: true,
     },
     Workph:{
         type: String,

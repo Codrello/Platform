@@ -197,12 +197,13 @@ router.post('/Reg',  function (req, res, next) {
         Users.password = hash
         Users.save((err, data) => {
           if (err) {
-            console.log(err);
+            res.json(err);
+          }else{
+            res.json({
+              data,
+              success: true
+            })
           }
-          res.json({
-            data,
-            success: true
-          })
           
         })
       })
