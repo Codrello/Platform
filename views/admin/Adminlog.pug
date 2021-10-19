@@ -4,10 +4,10 @@ block content
         //if message
           .dan(style="text-align-center: center;")  
             p.btn-block.btn-danger.btn-lg=message
-        != messages('message', locals)
-        if errors 
-          each error, i in errors
-            div(class="alert alert-danger") #{error.msg}
+        //!= messages('message', locals)
+        //if errors 
+        //  each error, i in errors
+        //    div(class="alert alert-danger") #{error.msg}
         .login-box
           // /.login-logo
           .card.card-outline.card-primary(style="border-top: 3px solid #28a745")

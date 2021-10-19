@@ -11,6 +11,8 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const adminRouter = require('./routes/admin');
 
+
+
 const app = express();
 
 // Validators
@@ -27,6 +29,7 @@ app.use(function(req, res, next) {
     res.locals.messages = expressMessage(req, res);
     next();
 });
+
 
 // Express_Sessions 
 app.use(session({

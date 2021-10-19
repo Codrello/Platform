@@ -13,7 +13,7 @@ router.get('/list', Login, function(req, res, next) {
   
   const user = req.user;
 
-  res.json(user);
+  res.send("usersasasasasasas");
   // res.render("list", {user})
 });
 

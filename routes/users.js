@@ -8,7 +8,8 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const { check, validationResult } = require('express-validator/check');
 const multer = require("multer");
-
+const jwt = require("jsonwebtoken");
+const config = require("../config");
 
 /* GET users listing. */
 router.get('/Reg', function (req, res, next) {
@@ -36,17 +37,23 @@ router.get('/restore', function (req, res, next) {
 
 /* POST users listing. */
 router.post('/Log',
- 
-  passport.authenticate("User"),
-  function(req, res) {
+
+  passport.authenticate("User", { session: false }),
+  function (req, res) {
     const user = req.user;
-    if(res.status !== 401){
-      res.json({user, success: true});
+    if (res.status !== 401) {
+      const body = { _id: user._id, username: user.username };
+      const payload = {user: body};
+      const token = jwt.sign(payload, config.secret_key, {
+        expiresIn: 86400
+        //86400 bir kungi vaqt sikunda
+      })
+      res.json({user, token: token, success: true});
     }
-    else if(res.status(401) == 401){
-      res.json({message:{success: false}});
+    else if (res.status(401) == 401) {
+      res.json({ message: { success: false } });
     }
-    
+
   },
 );
 
@@ -58,7 +65,7 @@ router.post('/restore', function (req, res, next) {
       console.log(err);
     } else {
       if (data.length === 0) {
-        res.json({message:"Email adresingiz bizning serverda topilmadi borib qaytatdan registratsiyadan o'ting"});
+        res.json({ message: "Email adresingiz bizning serverda topilmadi borib qaytatdan registratsiyadan o'ting" });
         console.log(data);
       } else {
         data.forEach(elem => {
@@ -116,7 +123,7 @@ router.post('/Edit/:id', function (req, res, next) {
 // };
 
 /* POST users listing. multer(Userupload).single("file", {maxCount: 1}), const path = "/images/userimg/upload\\" + req.file.filename;  */
-router.post('/Reg',  function (req, res, next) {
+router.post('/Reg', function (req, res, next) {
   const name = req.body.name;
   const Surname = req.body.Surname;
   const Fathname = req.body.Fathname;
@@ -156,7 +163,7 @@ router.post('/Reg',  function (req, res, next) {
   req.checkBody('Lavoz', `Lavozimlarni kriritishingz kerak`).notEmpty();
   req.checkBody('Course', `Kurslaringizni belgilashingiz kerak`).notEmpty();
   const errors = req.validationErrors();
-  
+
 
   if (errors) {
     res.json({
@@ -198,13 +205,13 @@ router.post('/Reg',  function (req, res, next) {
         Users.save((err, data) => {
           if (err) {
             res.json(err);
-          }else{
+          } else {
             res.json({
               data,
               success: true
             })
           }
-          
+
         })
       })
     })
@@ -219,7 +226,7 @@ router.post('/Reg',  function (req, res, next) {
 
 router.get('/logout', (req, res) => {
   req.logout();
-  res.json({success: true})
+  res.json({ success: true })
 })
 
 router.post('/UpdInf/:id', function (req, res, next) {
