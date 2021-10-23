@@ -1,6 +1,6 @@
 extends adminLay
-block content
-  body.hold-transition.sidebar-mini
+block content 
+  body.hold-transition.sidebar-mini.layout-fixed
     .wrapper
       include adminheader
       br
@@ -15,7 +15,7 @@ block content
                     h3.card-title Users Information
                     .card-tools
                       .input-group.input-group-sm(style='width: 150px;')
-                        input.form-control.float-right(type='text' name='table_search' placeholder='Search')
+                        input.form-control.float-right(id="inpSearch" type='text' name='table_search' placeholder='User Search')
                         .input-group-append
                           button.btn.btn-default(type='submit')
                             i.fas.fa-search
@@ -36,17 +36,42 @@ block content
                           //th UserImage
                       tbody
                         each val, i in data
-                            tr
-                              td=i
-                              td=val._id
-                              td=val.name
-                              td=val.DateBirth
-                              td
-                                span.tag.tag-success=val.Email
-                              td=val.Workph
-                              td=val.Jinsi
-                              td=val.Division
-                              td=val.Position
-                              //td
-                                img(src="images/userimg/upload/1634137967391.gif"  style="width: 80px; height:40px;" alt="jpg")
+                          tr
+                            td=i
+                            td=val._id
+                            td.nameUsr=val.name
+                            td=val.DateBirth
+                            td
+                              span.tag.tag-success=val.Email
+                            td=val.Workph
+                            td=val.Jinsi
+                            td=val.Division
+                            td=val.Position
+                            //td
+                              img(src="images/userimg/upload/1634137967391.gif"  style="width: 80px; height:40px;" alt="jpg")
       include adminfooter
+
+    script.
+      const input = $("#inpSearch")
+      const td = $(".card-body tbody .nameUsr")
+      const tr = $(".card-body tbody tr")
+      const btn = $(".btn-default")
+      console.log(input);
+      console.log(td);
+      console.log(tr);
+      console.log(btn);
+      input.on("input", () => {
+        var filter = input.val().toLowerCase();
+        for (var i = 0; i < td.length; i++) {
+          var tds = td[i].innerHTML;
+          tds = tds.toLowerCase();
+
+          if (tds.search(filter)) {
+            tr[i].classList.add("hide");
+
+          } else {
+            tr[i].classList.remove("hide");
+
+          }
+      }
+      })

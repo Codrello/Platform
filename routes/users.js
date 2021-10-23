@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const path = require("path");
 const User = require("../model/Users")
+const Contract = require("../model/Contract")
 const moment = require("moment");
 const Data = moment().format('YYYY.MM.DD/h:mm:a');
 const bcrypt = require("bcryptjs");
@@ -10,6 +11,8 @@ const { check, validationResult } = require('express-validator/check');
 const multer = require("multer");
 const jwt = require("jsonwebtoken");
 const config = require("../config");
+const Login = require("../helper/Middleware")
+
 
 /* GET users listing. */
 router.get('/Reg', function (req, res, next) {
@@ -24,7 +27,7 @@ router.get('/Log', function (req, res, next) {
   // }
   res.render("Login");
 });
-router.get('/UpdInf', function (req, res, next) {
+router.get('/UpdInf', Login, function (req, res, next) {
   const user = req.user;
   res.render("Update", { user });
 });
@@ -34,6 +37,12 @@ router.get('/restore', function (req, res, next) {
 
 });
 
+router.get('/contr', function (req, res, next) {
+  const user = req.user;
+  console.log(user)
+  res.render("contr", { user });
+
+});
 
 /* POST users listing. */
 router.post('/Log',
@@ -43,12 +52,12 @@ router.post('/Log',
     const user = req.user;
     if (res.status !== 401) {
       const body = { _id: user._id, username: user.username };
-      const payload = {user: body};
+      const payload = { user: body };
       const token = jwt.sign(payload, config.secret_key, {
         expiresIn: 86400
         //86400 bir kungi vaqt sikunda
       })
-      res.json({user, token: token, success: true});
+      res.json({user, token});
     }
     else if (res.status(401) == 401) {
       res.json({ message: { success: false } });
@@ -109,21 +118,21 @@ router.post('/Edit/:id', function (req, res, next) {
 
 });
 
-// const Userupload = {
-//   storage: multer.diskStorage({
-//     destination: function (req, file, next) {
-//       next(null, './public/images/userimg/upload');
-//     },
-//     filename: function (req, file, next) {
-//       next(null, Date.now() + path.extname(file.originalname))
-//     },
+const Userupload = {
+  storage: multer.diskStorage({
+    destination: function (req, file, next) {
+      next(null, './public/images/userimg/upload');
+    },
+    filename: function (req, file, next) {
+      next(null, Date.now() + path.extname(file.originalname))
+    },
 
-//   })
+  })
 
-// };
+};
 
-/* POST users listing. multer(Userupload).single("file", {maxCount: 1}), const path = "/images/userimg/upload\\" + req.file.filename;  */
-router.post('/Reg', function (req, res, next) {
+/* POST users listing  */
+router.post('/Reg', multer(Userupload).single("file", {maxCount: 1}), function (req, res, next) {
   const name = req.body.name;
   const Surname = req.body.Surname;
   const Fathname = req.body.Fathname;
@@ -163,7 +172,7 @@ router.post('/Reg', function (req, res, next) {
   req.checkBody('Lavoz', `Lavozimlarni kriritishingz kerak`).notEmpty();
   req.checkBody('Course', `Kurslaringizni belgilashingiz kerak`).notEmpty();
   const errors = req.validationErrors();
-
+  const path = "/images/userimg/upload\\" + req.file.filename;
 
   if (errors) {
     res.json({
@@ -192,8 +201,9 @@ router.post('/Reg', function (req, res, next) {
       Division: Bol,
       Position: Lavoz,
       Courses: Course,
-      // UserImg: path,
+      UserImg: path,
       type: "User",
+      token: "",
       Date: Data
     })
     bcrypt.genSalt(10, (err, pass) => {
@@ -230,41 +240,75 @@ router.get('/logout', (req, res) => {
 })
 
 router.post('/UpdInf/:id', function (req, res, next) {
-  const Updname = req.body.UpdSurname;
-  const UpdSurname = req.body.Updname;
-  const UpdFathname = req.body.UpdFathname;
-  const UpddateBirth = req.body.UpddateBirth;
-  const UpdHudud = req.body.UpdHudud;
-  const UpdTuman = req.body.UpdTuman;
-  const UpdSex = req.body.UpdSex;
-  const Updemail = req.body.Updemail;
-  const Updwkphone = req.body.Updwkphone;
-  const Updmlphone = req.body.Updmlphone;
+  const Surname = req.body.UpdSurname;
+  const name = req.body.Updname;
+  const FatherName = req.body.UpdFathname;
+  const DateBirth = req.body.UpddateBirth;
+  const Region = req.body.UpdHudud;
+  const District = req.body.UpdTuman;
+  const Jinsi = req.body.UpdSex;
+  const Email = req.body.Updemail;
+  const Workph = req.body.Updwkphone;
+  const Homeph = req.body.Updmlphone;
 
   const foremUpd = {
-    Updname,
-    UpdSurname,
-    UpdFathname,
-    UpddateBirth,
-    UpdHudud,
-    UpdTuman,
-    UpdSex,
-    Updemail,
-    Updwkphone,
-    Updmlphone
+    Surname,
+    name,
+    FatherName,
+    DateBirth,
+    Region,
+    District,
+    Jinsi,
+    Email,
+    Workph,
+    Homeph
   }
   const quer = { _id: req.params.id };
-  User.findOneAndUpdate(quer, foremUpd, (err, doc) => {
+  User.findByIdAndUpdate(quer, foremUpd, (err, doc) => {
     if (err) {
       console.log(err);
     } else {
-      res.redirect("/list");
-      console.log(doc);
+      res.json(doc);
+      // console.log(doc);
     }
   })
 });
 
+const ContractUpl = {
+  storage: multer.diskStorage({
+    destination: function (req, file, next) {
+      next(null, './public/images/Contractimg/upload');
+    },
+    filename: function (req, file, next) {
+      next(null, Date.now() + path.extname(file.originalname))
+    },
 
+  })
+};
+
+
+
+router.post('/contr/:id', multer(ContractUpl).single("file", { maxCount: 1 }), function (req, res, next) {
+  const user = req.user;
+  const path = "/images/Contractimg/upload\\" + req.file.filename;
+  console.log(path)
+  const Contracts = new Contract({
+    Userid: req.params.id,
+    Cardholder: req.body.contrKr,
+    ContractImg: path,
+    Date: Data
+  });
+  Contracts.save((err, cont) => {
+    if(err){
+      console.log(err);
+    }
+    console.log(cont);
+    res.redirect("/Allvid");
+
+  })
+
+
+});
 
 
 module.exports = router;

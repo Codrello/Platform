@@ -57,7 +57,12 @@
   background: #28a745;
 }
 
-
+.hide{
+  display: none !important;
+}
+.padingForimg{
+  padding-left: 0.4rem !important;
+}
 
 html {
   font-family: sans-serif;
@@ -1693,7 +1698,7 @@ pre code {
 .table td {
   padding: 0.75rem;
   vertical-align: top;
-  border-top: 1px solid #dee2e6;
+  border: 1px solid #dee2e6;
 }
 
 .table thead th {

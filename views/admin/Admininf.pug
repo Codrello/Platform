@@ -1,6 +1,6 @@
 extends adminLay
 block content
-  body.hold-transition.sidebar-mini
+  body.hold-transition.sidebar-mini.layout-fixed
     .wrapper
       include adminheader
       br
@@ -13,13 +13,6 @@ block content
                 .card
                   .card-header
                     h3.card-title Admins Information
-                    .card-tools
-                      .input-group.input-group-sm(style='width: 150px;')
-                        input.form-control.float-right(type='text' name='table_search' placeholder='Search')
-                        .input-group-append
-                          button.btn.btn-default(type='submit')
-                            i.fas.fa-search
-                  // /.card-header
                   .card-body.table-responsive.p-0(style='height: 700px;')
                     table.table.table-head-fixed.text-nowrap
                       thead

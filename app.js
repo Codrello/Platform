@@ -42,7 +42,7 @@ app.use(session({
       path: '/', 
       httpOnly: true,
       secure: false,
-      maxAge: 7200000,   
+      maxAge: 86400000, 
   }
 }));
 require('./passport/passport')(passport)
@@ -78,6 +78,7 @@ db.on("open", () => {
 db.on("error", (err) => {
   console.log("MongoDb da qayerdadir xatolik yuz berdi" + err)
 })
+
 
 app.use(cors());
 

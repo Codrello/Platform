@@ -4,8 +4,6 @@ const User = require('../model/Users')
 const Admins = require("../model/admins")
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
-// var JwtStrategy = require('passport-jwt').Strategy,
-//   ExtractJwt = require('passport-jwt').ExtractJwt;
 
 module.exports = (passport) => {
   passport.use('User', new LocalStrategy({
@@ -25,7 +23,6 @@ module.exports = (passport) => {
           done(null, user)
         }
         else {
-          
           done(null, false, { message: `parolingiz notog'ri` })
         }
       })
@@ -33,37 +30,6 @@ module.exports = (passport) => {
   }
   ));
 
-
-  // var opts = {}
-  // opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-  // opts.secretOrKey = 'secret_passport';
-  // passport.use('User', new JwtStrategy(opts, function (jwt_payload, done) {
-  //   User.findOne({ username: jwt_payload }, function (err, user) {
-  //     if (err) {
-  //       return done(err, false);
-  //     }
-  //     if (user) {
-  //       return done(null, user);
-  //     } else {
-  //       bcrypt.compare(password, user.password, (err, isMatch) => {
-  //         if (err) {
-  //           console.log(err);
-  //         }
-  //         if (isMatch) {
-  //           done(null, user)
-  //         }
-  //         else {
-  //           const payload = { username };
-  //           jwt.sign(payload, req.app.get("secret_key"), {
-  //             expiresIn: 180
-  //           })
-
-  //           done(null, false, { message: `parolingiz notog'ri` })
-  //         }
-  //       })
-  //     }
-  //   });
-  // }));
 
 
 
@@ -86,11 +52,6 @@ module.exports = (passport) => {
             done(null, admin)
           }
           else {
-            const payload = { username };
-            jwt.sign(payload, req.app.get("secret_key"), {
-              expiresIn: 5
-            })
-
             done(null, false, { message: `parolingiz notog'ri` })
           }
         })

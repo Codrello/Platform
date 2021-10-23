@@ -1,11 +1,12 @@
 extends adminLay
 block content
-    body.hold-transition.sidebar-mini
+    body.hold-transition.sidebar-mini.layout-fixed
         .wrapper
             include adminheader
             .content-wrapper
                 section.content
                     .container-fluid
+                        br
                         .row
                             .col-md-12
                                 form.card.card-info(action='/admin/AddLessons' method='post' enctype="multipart/form-data")

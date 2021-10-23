@@ -10,17 +10,7 @@ block content
           .row.mb-2
             .col-sm-6
               h1.m-0 Dashboard
-            // /.col
-            .col-sm-6
-              ol.breadcrumb.float-sm-right
-                li.breadcrumb-item
-                  a(href='#') Home
-                li.breadcrumb-item.active Dashboard v1
-            // /.col
-            // /.row
-            // /.container-fluid
-            // /.content-header
-            // Main content
+          br
           section.content
               .container-fluid
                 // Small boxes (Stat box)
@@ -41,10 +31,12 @@ block content
                     // small box
                     .small-box.bg-success
                       .inner
+                        - const result = memory.free / 1000000000
+                        - const memor = Math.floor(result) / 10
                         h3
-                          | 53
+                          | #{memor}
                           sup(style='font-size: 20px') %
-                        p Bounce Rate
+                        p There is space on the server
                       .icon
                         i.ion.ion-stats-bars
                       a.small-box-footer(href='#')

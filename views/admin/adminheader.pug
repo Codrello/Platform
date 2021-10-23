@@ -1,508 +1,274 @@
 nav.main-header.navbar.navbar-expand.navbar-white.navbar-light
-    // Left navbar links
-    ul.navbar-nav
-      li.nav-item
-        a.nav-link(data-widget='pushmenu' href='#' role='button')
-          i.fas.fa-bars
-      li.nav-item.d-none.d-sm-inline-block
-        a.nav-link(href='/admin/dashboard') Home
-    // Right navbar links
-    ul.navbar-nav.ml-auto
-      // Navbar Search
-      // Messages Dropdown Menu
-      li.nav-item.dropdown
-        a.nav-link(data-toggle='dropdown' href='#')
-          i.far.fa-comments
-          span.badge.badge-danger.navbar-badge 3
-        .dropdown-menu.dropdown-menu-lg.dropdown-menu-right
-          a.dropdown-item(href='#')
-            // Message Start
-            .media
-              img.img-size-50.mr-3.img-circle(src='dist/img/user1-128x128.jpg' alt='User Avatar')
-              .media-body
-                h3.dropdown-item-title
-                  | Brad Diesel
-                  span.float-right.text-sm.text-danger
-                    i.fas.fa-star
-                p.text-sm Call me whenever you can...
-                p.text-sm.text-muted
-                  i.far.fa-clock.mr-1
-                  |  4 Hours Ago
-            // Message End
-          .dropdown-divider
-          a.dropdown-item(href='#')
-            // Message Start
-            .media
-              img.img-size-50.img-circle.mr-3(src='dist/img/user8-128x128.jpg' alt='User Avatar')
-              .media-body
-                h3.dropdown-item-title
-                  | John Pierce
-                  span.float-right.text-sm.text-muted
-                    i.fas.fa-star
-                p.text-sm I got your message bro
-                p.text-sm.text-muted
-                  i.far.fa-clock.mr-1
-                  |  4 Hours Ago
-            // Message End
-          .dropdown-divider
-          a.dropdown-item(href='#')
-            // Message Start
-            .media
-              img.img-size-50.img-circle.mr-3(src='dist/img/user3-128x128.jpg' alt='User Avatar')
-              .media-body
-                h3.dropdown-item-title
-                  | Nora Silvester
-                  span.float-right.text-sm.text-warning
-                    i.fas.fa-star
-                p.text-sm The subject goes here
-                p.text-sm.text-muted
-                  i.far.fa-clock.mr-1
-                  |  4 Hours Ago
-            // Message End
-          .dropdown-divider
-          a.dropdown-item.dropdown-footer(href='#') See All Messages
-      // Notifications Dropdown Menu
-      li.nav-item.dropdown
-        a.nav-link(data-toggle='dropdown' href='#')
-          i.far.fa-bell
-          span.badge.badge-warning.navbar-badge 15
-        .dropdown-menu.dropdown-menu-lg.dropdown-menu-right
-          span.dropdown-item.dropdown-header 15 Notifications
-          .dropdown-divider
-          a.dropdown-item(href='#')
-            i.fas.fa-envelope.mr-2
-            |  4 new messages
-            span.float-right.text-muted.text-sm 3 mins
-          .dropdown-divider
-          a.dropdown-item(href='#')
-            i.fas.fa-users.mr-2
-            |  8 friend requests
-            span.float-right.text-muted.text-sm 12 hours
-          .dropdown-divider
-          a.dropdown-item(href='#')
-            i.fas.fa-file.mr-2
-            |  3 new reports
-            span.float-right.text-muted.text-sm 2 days
-          .dropdown-divider
-          a.dropdown-item.dropdown-footer(href='#') See All Notifications
-      li.nav-item
-        a.nav-link(data-widget='fullscreen' href='#' role='button')
-          i.fas.fa-expand-arrows-alt
+  // Left navbar links
+  ul.navbar-nav
+    li.nav-item
+      a.nav-link#bars(data-widget='pushmenu' href='#' role='button')
+        i.fas.fa-bars
+    li.nav-item.d-none.d-sm-inline-block
+      a.nav-link(href='/admin/dashboard') Home
+  // Right navbar links
+  ul.navbar-nav.ml-auto
+    li.nav-item
+      a.nav-link(data-widget='fullscreen' href='#' role='button')
+        i.fas.fa-expand-arrows-alt
 aside.main-sidebar.sidebar-dark-primary.elevation-4
-    // Brand Logo
-    a.brand-link(href='index3.html')
-      img.brand-image.img-circle.elevation-3(src='/images/AdminLTELogo.png' alt='AdminLTE Logo' style='opacity: .8')
-      span.brand-text.font-weight-light Admin
-    // Sidebar
-    .sidebar
-      // Sidebar user panel (optional)
-      .user-panel.mt-3.pb-3.mb-3.d-flex
-        .image
-          img.img-circle.elevation-2(src=admin.AdminImg alt='User Image')
-        .info
-          a.d-block(href='#')=admin.username
-      // SidebarSearch Form
-      // Sidebar Menu
-      nav.mt-2
-        ul.nav.nav-pills.nav-sidebar.flex-column(data-widget='treeview' role='menu' data-accordion='false')
-          //
-            Add icons to the links using the .nav-icon class
-            with font-awesome or any other icon font library
-          
-          if title == "dashboard"
-            - let Addclass = "active"
-            li.nav-item
-              a.nav-link(class=Addclass href='/admin/dashboard')
-                i.nav-icon.fas.fa-tachometer-alt
-                p
-                  | Dashboard
-            li.nav-item
-              a.nav-link(href='/admin/Addvid/')
-                i.fas.fa-plus-square.nav-icon
-                p
-                  | Dars qo'shish
-            li.nav-item
-              a.nav-link(href='/admin/Lessons')
-                i.fas.fa-video.nav-icon
-                p
-                  | Darslar
-            li.nav-item
-              a.nav-link(href='/admin/Userinf')
-                i.nav-icon.fas.fa-table
-                p
-                  | Users Information
-            li.nav-item
-              a.nav-link(href='/admin/Admininf')
-                i.nav-icon.fas.fa-table
-                p
-                  | Admins Information
-          if title == "Addvid"
-            - let Addclass = "active"
-            li.nav-item
-              a.nav-link(href='/admin/dashboard')
-                i.nav-icon.fas.fa-tachometer-alt
-                p
-                  | Dashboard
-            li.nav-item
-              a.nav-link(class=Addclass href='/admin/Addvid/')
-                i.fas.fa-plus-square.nav-icon
-                p
-                  | Dars qo'shish
-            li.nav-item
-              a.nav-link(href='/admin/Lessons')
-                i.fas.fa-video.nav-icon
-                p
-                  | Darslar
-            li.nav-item
-              a.nav-link(href='/admin/Userinf')
-                i.nav-icon.fas.fa-table
-                p
-                  | Users Information
-            li.nav-item
-              a.nav-link(href='/admin/Admininf')
-                i.nav-icon.fas.fa-table
-                p
-                  | Admins Information
-          if title == "Lessons"
-            - let Addclass = "active"
-            li.nav-item
-              a.nav-link(href='/admin/dashboard')
-                i.nav-icon.fas.fa-tachometer-alt
-                p
-                  | Dashboard
-            li.nav-item
-              a.nav-link(href='/admin/Addvid/')
-                i.fas.fa-plus-square.nav-icon
-                p
-                  | Dars qo'shish
-            li.nav-item
-              a.nav-link(class=Addclass href='/admin/Lessons')
-                i.fas.fa-video.nav-icon
-                p
-                  | Darslar
-            li.nav-item
-              a.nav-link(href='/admin/Userinf')
-                i.nav-icon.fas.fa-table
-                p
-                  | Users Information
-            li.nav-item
-              a.nav-link(href='/admin/Admininf')
-                i.nav-icon.fas.fa-table
-                p
-                  | Admins Information
-          if title == "Userinf"
-            - let Addclass = "active"
-            li.nav-item
-              a.nav-link(href='/admin/dashboard')
-                i.nav-icon.fas.fa-tachometer-alt
-                p
-                  | Dashboard
-            li.nav-item
-              a.nav-link(href='/admin/Addvid/')
-                i.fas.fa-plus-square.nav-icon
-                p
-                  | Dars qo'shish
-            li.nav-item
-              a.nav-link(href='/admin/Lessons')
-                i.fas.fa-video.nav-icon
-                p
-                  | Darslar
-            li.nav-item
-              a.nav-link(class=Addclass href='/admin/Userinf')
-                i.nav-icon.fas.fa-table
-                p
-                  | Users Information
-            li.nav-item
-              a.nav-link(href='/admin/Admininf')
-                i.nav-icon.fas.fa-table
-                p
-                  | Admins Information         
-          if title == "Admininf"
-            - let Addclass = "active"
-            li.nav-item
-              a.nav-link(href='/admin/dashboard')
-                i.nav-icon.fas.fa-tachometer-alt
-                p
-                  | Dashboard
-            li.nav-item
-              a.nav-link(href='/admin/Addvid/')
-                i.fas.fa-plus-square.nav-icon
-                p
-                  | Dars qo'shish
-            li.nav-item
-              a.nav-link(href='/admin/Lessons')
-                i.fas.fa-video.nav-icon
-                p
-                  | Darslar
-            li.nav-item
-              a.nav-link(href='/admin/Userinf')
-                i.nav-icon.fas.fa-table
-                p
-                  | Users Information
-            li.nav-item
-              a.nav-link(class=Addclass href='/admin/Admininf')
-                i.nav-icon.fas.fa-table
-                p
-                  | Admins Information       
+  // Brand Logo
+  a.brand-link(href='index3.html')
+    img.brand-image.img-circle.elevation-3(src='/images/AdminLTELogo.png' alt='AdminLTE Logo' style='opacity: .8')
+    span.brand-text.font-weight-light Admin
+  // Sidebar
+  .sidebar
+    // Sidebar user panel (optional)
+    .user-panel.mt-3.pb-3.mb-3.d-flex
+      .image
+        img.img-circle.elevation-2(src=admin.AdminImg alt='User Image')
+      .info
+        a.d-block(href='#')=admin.username
+    // SidebarSearch Form
+    // Sidebar Menu
+    nav.mt-2
+      ul.nav.nav-pills.nav-sidebar.flex-column(data-widget='treeview' role='menu' data-accordion='false')
+        //
+          Add icons to the links using the .nav-icon class
+          with font-awesome or any other icon font library
+
+        if title == "dashboard"
+          - let Addclass = "active"
+          li.nav-item
+            a.nav-link(class=Addclass href='/admin/dashboard')
+              i.nav-icon.fas.fa-tachometer-alt
+              p
+                | Dashboard
+          li.nav-item
+            a.nav-link(href='/admin/Addvid/')
+              i.fas.fa-plus-square.nav-icon
+              p
+                | Dars qo'shish
+          li.nav-item
+            a.nav-link(href='/admin/Lessons')
+              i.fas.fa-video.nav-icon
+              p
+                | Darslar
+          li.nav-item
+            a.nav-link(href='/admin/Userinf')
+              i.nav-icon.fas.fa-table
+              p
+                | Users Information
+          li.nav-item
+            a.nav-link(href='/admin/Admininf')
+              i.nav-icon.fas.fa-table
+              p
+                | Admins Information
+          li.nav-item
+            a.nav-link(href='/admin/Contract')
+              i.nav-icon.far.fa-handshake
+              p
+                | Contract
           li.nav-item
             a.nav-link(href='/admin/Adminreg')
               i.nav-icon.fas.fa-user-plus
               p
                 | Add Admin
+        if title == "Addvid"
+          - let Addclass = "active"
           li.nav-item
-            a.nav-link(href='#')
+            a.nav-link(href='/admin/dashboard')
+              i.nav-icon.fas.fa-tachometer-alt
+              p
+                | Dashboard
+          li.nav-item
+            a.nav-link(class=Addclass href='/admin/Addvid/')
+              i.fas.fa-plus-square.nav-icon
+              p
+                | Dars qo'shish
+          li.nav-item
+            a.nav-link(href='/admin/Lessons')
+              i.fas.fa-video.nav-icon
+              p
+                | Darslar
+          li.nav-item
+            a.nav-link(href='/admin/Userinf')
               i.nav-icon.fas.fa-table
               p
-                | Tables
-                i.fas.fa-angle-left.right
-          li.nav-header EXAMPLES
+                | Users Information
           li.nav-item
-            a.nav-link(href='pages/calendar.html')
-              i.nav-icon.far.fa-calendar-alt
+            a.nav-link(href='/admin/Admininf')
+              i.nav-icon.fas.fa-table
               p
-                | Calendar
-                span.badge.badge-info.right 2
+                | Admins Information
           li.nav-item
-            a.nav-link(href='pages/gallery.html')
-              i.nav-icon.far.fa-image
+            a.nav-link(href='/admin/Contract')
+              i.nav-icon.far.fa-handshake
               p
-                | Gallery
+                | Contract
           li.nav-item
-            a.nav-link(href='pages/kanban.html')
-              i.nav-icon.fas.fa-columns
+            a.nav-link(href='/admin/Adminreg')
+              i.nav-icon.fas.fa-user-plus
               p
-                | Kanban Board
+                | Add Admin
+        if title == "Lessons"
+          - let Addclass = "active"
           li.nav-item
-            a.nav-link(href='#')
-              i.nav-icon.far.fa-envelope
+            a.nav-link(href='/admin/dashboard')
+              i.nav-icon.fas.fa-tachometer-alt
               p
-                | Mailbox
-                i.fas.fa-angle-left.right
-            ul.nav.nav-treeview
-              li.nav-item
-                a.nav-link(href='pages/mailbox/mailbox.html')
-                  i.far.fa-circle.nav-icon
-                  p Inbox
-              li.nav-item
-                a.nav-link(href='pages/mailbox/compose.html')
-                  i.far.fa-circle.nav-icon
-                  p Compose
-              li.nav-item
-                a.nav-link(href='pages/mailbox/read-mail.html')
-                  i.far.fa-circle.nav-icon
-                  p Read
+                | Dashboard
           li.nav-item
-            a.nav-link(href='#')
-              i.nav-icon.fas.fa-book
+            a.nav-link(href='/admin/Addvid/')
+              i.fas.fa-plus-square.nav-icon
               p
-                | Pages
-                i.fas.fa-angle-left.right
-            ul.nav.nav-treeview
-              li.nav-item
-                a.nav-link(href='pages/examples/invoice.html')
-                  i.far.fa-circle.nav-icon
-                  p Invoice
-              li.nav-item
-                a.nav-link(href='pages/examples/profile.html')
-                  i.far.fa-circle.nav-icon
-                  p Profile
-              li.nav-item
-                a.nav-link(href='pages/examples/e-commerce.html')
-                  i.far.fa-circle.nav-icon
-                  p E-commerce
-              li.nav-item
-                a.nav-link(href='pages/examples/projects.html')
-                  i.far.fa-circle.nav-icon
-                  p Projects
-              li.nav-item
-                a.nav-link(href='pages/examples/project-add.html')
-                  i.far.fa-circle.nav-icon
-                  p Project Add
-              li.nav-item
-                a.nav-link(href='pages/examples/project-edit.html')
-                  i.far.fa-circle.nav-icon
-                  p Project Edit
-              li.nav-item
-                a.nav-link(href='pages/examples/project-detail.html')
-                  i.far.fa-circle.nav-icon
-                  p Project Detail
-              li.nav-item
-                a.nav-link(href='pages/examples/contacts.html')
-                  i.far.fa-circle.nav-icon
-                  p Contacts
-              li.nav-item
-                a.nav-link(href='pages/examples/faq.html')
-                  i.far.fa-circle.nav-icon
-                  p FAQ
-              li.nav-item
-                a.nav-link(href='pages/examples/contact-us.html')
-                  i.far.fa-circle.nav-icon
-                  p Contact us
+                | Dars qo'shish
           li.nav-item
-            a.nav-link(href='#')
-              i.nav-icon.far.fa-plus-square
+            a.nav-link(class=Addclass href='/admin/Lessons')
+              i.fas.fa-video.nav-icon
               p
-                | Extras
-                i.fas.fa-angle-left.right
-            ul.nav.nav-treeview
-              li.nav-item
-                a.nav-link(href='#')
-                  i.far.fa-circle.nav-icon
-                  p
-                    | Login & Register v1
-                    i.fas.fa-angle-left.right
-                ul.nav.nav-treeview
-                  li.nav-item
-                    a.nav-link(href='pages/examples/login.html')
-                      i.far.fa-circle.nav-icon
-                      p Login v1
-                  li.nav-item
-                    a.nav-link(href='pages/examples/register.html')
-                      i.far.fa-circle.nav-icon
-                      p Register v1
-                  li.nav-item
-                    a.nav-link(href='pages/examples/forgot-password.html')
-                      i.far.fa-circle.nav-icon
-                      p Forgot Password v1
-                  li.nav-item
-                    a.nav-link(href='pages/examples/recover-password.html')
-                      i.far.fa-circle.nav-icon
-                      p Recover Password v1
-              li.nav-item
-                a.nav-link(href='#')
-                  i.far.fa-circle.nav-icon
-                  p
-                    | Login & Register v2
-                    i.fas.fa-angle-left.right
-                ul.nav.nav-treeview
-                  li.nav-item
-                    a.nav-link(href='pages/examples/login-v2.html')
-                      i.far.fa-circle.nav-icon
-                      p Login v2
-                  li.nav-item
-                    a.nav-link(href='pages/examples/register-v2.html')
-                      i.far.fa-circle.nav-icon
-                      p Register v2
-                  li.nav-item
-                    a.nav-link(href='pages/examples/forgot-password-v2.html')
-                      i.far.fa-circle.nav-icon
-                      p Forgot Password v2
-                  li.nav-item
-                    a.nav-link(href='pages/examples/recover-password-v2.html')
-                      i.far.fa-circle.nav-icon
-                      p Recover Password v2
-              li.nav-item
-                a.nav-link(href='pages/examples/lockscreen.html')
-                  i.far.fa-circle.nav-icon
-                  p Lockscreen
-              li.nav-item
-                a.nav-link(href='pages/examples/legacy-user-menu.html')
-                  i.far.fa-circle.nav-icon
-                  p Legacy User Menu
-              li.nav-item
-                a.nav-link(href='pages/examples/language-menu.html')
-                  i.far.fa-circle.nav-icon
-                  p Language Menu
-              li.nav-item
-                a.nav-link(href='pages/examples/404.html')
-                  i.far.fa-circle.nav-icon
-                  p Error 404
-              li.nav-item
-                a.nav-link(href='pages/examples/500.html')
-                  i.far.fa-circle.nav-icon
-                  p Error 500
-              li.nav-item
-                a.nav-link(href='pages/examples/pace.html')
-                  i.far.fa-circle.nav-icon
-                  p Pace
-              li.nav-item
-                a.nav-link(href='pages/examples/blank.html')
-                  i.far.fa-circle.nav-icon
-                  p Blank Page
-              li.nav-item
-                a.nav-link(href='starter.html')
-                  i.far.fa-circle.nav-icon
-                  p Starter Page
+                | Darslar
           li.nav-item
-            a.nav-link(href='#')
-              i.nav-icon.fas.fa-search
+            a.nav-link(href='/admin/Userinf')
+              i.nav-icon.fas.fa-table
               p
-                | Search
-                i.fas.fa-angle-left.right
-            ul.nav.nav-treeview
-              li.nav-item
-                a.nav-link(href='pages/search/simple.html')
-                  i.far.fa-circle.nav-icon
-                  p Simple Search
-              li.nav-item
-                a.nav-link(href='pages/search/enhanced.html')
-                  i.far.fa-circle.nav-icon
-                  p Enhanced
-          li.nav-header MISCELLANEOUS
+                | Users Information
           li.nav-item
-            a.nav-link(href='iframe.html')
-              i.nav-icon.fas.fa-ellipsis-h
-              p Tabbed IFrame Plugin
-          li.nav-item
-            a.nav-link(href='https://adminlte.io/docs/3.1/')
-              i.nav-icon.fas.fa-file
-              p Documentation
-          li.nav-header MULTI LEVEL EXAMPLE
-          li.nav-item
-            a.nav-link(href='#')
-              i.fas.fa-circle.nav-icon
-              p Level 1
-          li.nav-item
-            a.nav-link(href='#')
-              i.nav-icon.fas.fa-circle
+            a.nav-link(href='/admin/Admininf')
+              i.nav-icon.fas.fa-table
               p
-                | Level 1
-                i.right.fas.fa-angle-left
-            ul.nav.nav-treeview
-              li.nav-item
-                a.nav-link(href='#')
-                  i.far.fa-circle.nav-icon
-                  p Level 2
-              li.nav-item
-                a.nav-link(href='#')
-                  i.far.fa-circle.nav-icon
-                  p
-                    | Level 2
-                    i.right.fas.fa-angle-left
-                ul.nav.nav-treeview
-                  li.nav-item
-                    a.nav-link(href='#')
-                      i.far.fa-dot-circle.nav-icon
-                      p Level 3
-                  li.nav-item
-                    a.nav-link(href='#')
-                      i.far.fa-dot-circle.nav-icon
-                      p Level 3
-                  li.nav-item
-                    a.nav-link(href='#')
-                      i.far.fa-dot-circle.nav-icon
-                      p Level 3
-              li.nav-item
-                a.nav-link(href='#')
-                  i.far.fa-circle.nav-icon
-                  p Level 2
+                | Admins Information
           li.nav-item
-            a.nav-link(href='#')
-              i.fas.fa-circle.nav-icon
-              p Level 1
-          li.nav-header LABELS
+            a.nav-link(href='/admin/Contract')
+              i.nav-icon.far.fa-handshake
+              p
+                | Contract
           li.nav-item
-            a.nav-link(href='#')
-              i.nav-icon.far.fa-circle.text-danger
-              p.text Important
+            a.nav-link(href='/admin/Adminreg')
+              i.nav-icon.fas.fa-user-plus
+              p
+                | Add Admin
+        if title == "Userinf"
+          - let Addclass = "active"
           li.nav-item
-            a.nav-link(href='#')
-              i.nav-icon.far.fa-circle.text-warning
-              p Warning
+            a.nav-link(href='/admin/dashboard')
+              i.nav-icon.fas.fa-tachometer-alt
+              p
+                | Dashboard
           li.nav-item
-            a.nav-link(href='#')
-              i.nav-icon.far.fa-circle.text-info
-              p Informational
-      // /.sidebar-menu
-      // /.sidebar
+            a.nav-link(href='/admin/Addvid/')
+              i.fas.fa-plus-square.nav-icon
+              p
+                | Dars qo'shish
+          li.nav-item
+            a.nav-link(href='/admin/Lessons')
+              i.fas.fa-video.nav-icon
+              p
+                | Darslar
+          li.nav-item
+            a.nav-link(class=Addclass href='/admin/Userinf')
+              i.nav-icon.fas.fa-table
+              p
+                | Users Information
+          li.nav-item
+            a.nav-link(href='/admin/Admininf')
+              i.nav-icon.fas.fa-table
+              p
+                | Admins Information         
+          li.nav-item
+            a.nav-link(href='/admin/Contract')
+              i.nav-icon.far.fa-handshake
+              p
+                | Contract
+          li.nav-item
+            a.nav-link(href='/admin/Adminreg')
+              i.nav-icon.fas.fa-user-plus
+              p
+                | Add Admin
+        if title == "Admininf"
+          - let Addclass = "active"
+          li.nav-item
+            a.nav-link(href='/admin/dashboard')
+              i.nav-icon.fas.fa-tachometer-alt
+              p
+                | Dashboard
+          li.nav-item
+            a.nav-link(href='/admin/Addvid/')
+              i.fas.fa-plus-square.nav-icon
+              p
+                | Dars qo'shish
+          li.nav-item
+            a.nav-link(href='/admin/Lessons')
+              i.fas.fa-video.nav-icon
+              p
+                | Darslar
+          li.nav-item
+            a.nav-link(href='/admin/Userinf')
+              i.nav-icon.fas.fa-table
+              p
+                | Users Information
+          li.nav-item
+            a.nav-link(class=Addclass href='/admin/Admininf')
+              i.nav-icon.fas.fa-table
+              p
+                | Admins Information       
+          li.nav-item
+            a.nav-link(href='/admin/Contract')
+              i.nav-icon.far.fa-handshake
+              p
+                | Contract
+          li.nav-item
+            a.nav-link(href='/admin/Adminreg')
+              i.nav-icon.fas.fa-user-plus
+              p
+                | Add Admin
+        if title == "Contract"
+          - let Addclass = "active"
+          li.nav-item
+            a.nav-link(href='/admin/dashboard')
+              i.nav-icon.fas.fa-tachometer-alt
+              p
+                | Dashboard
+          li.nav-item
+            a.nav-link(href='/admin/Addvid/')
+              i.fas.fa-plus-square.nav-icon
+              p
+                | Dars qo'shish
+          li.nav-item
+            a.nav-link(href='/admin/Lessons')
+              i.fas.fa-video.nav-icon
+              p
+                | Darslar
+          li.nav-item
+            a.nav-link(href='/admin/Userinf')
+              i.nav-icon.fas.fa-table
+              p
+                | Users Information
+          li.nav-item
+            a.nav-link(href='/admin/Admininf')
+              i.nav-icon.fas.fa-table
+              p
+                | Admins Information       
+          li.nav-item
+            a.nav-link(class=Addclass href='/admin/Contract')
+              i.nav-icon.far.fa-handshake
+              p
+                | Contract
+          li.nav-item
+            a.nav-link(href='/admin/Adminreg')
+              i.nav-icon.fas.fa-user-plus
+              p
+                | Add Admin
+    // /.sidebar-menu
+    // /.sidebar
 
+script.
+  const bars = $("#bars");
+  const layout = $(".layout-fixed");
+  const img = $(".user-panel .image")
+  bars.on("click", () => {
+    if(layout.hasClass("sidebar-collapse")){
+      layout.removeClass("sidebar-collapse");
+      img.removeClass("padingForimg");
+    }else{
+      layout.addClass("sidebar-collapse");
+      img.addClass("padingForimg");
+    }
+  })
+  console.log(layout);
+  console.log(bars);

@@ -11,6 +11,7 @@ const Login = (req, res, next) => {
                 res.json({ success: false, message: "token yoq yoki token vaqti tugagan" })
             }
             req.decoded = decoded;
+            
             next()
         })
     } else {
