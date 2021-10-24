@@ -83,19 +83,19 @@ router.get('/dashboard', MdAdmin, function (req, res, next) {
                         console.log(err);
                     }
                     const admin = req.user;
-                    checkDiskSpace('D:').then((diskSpace) => {
-                        // {
-                        //     diskPath: 'D:',
-                        //     free: 12345678,
-                        //     size: 98756432
-                        // }
-                        // Note: `free` and `size` are in bytes
-                        const memory = diskSpace;
-                        console.log(memory)
+                    // checkDiskSpace('D:').then((diskSpace) => {
+                    //     // {
+                    //     //     diskPath: 'D:',
+                    //     //     free: 12345678,
+                    //     //     size: 98756432
+                    //     // }
+                    //     // Note: `free` and `size` are in bytes
+                    //     const memory = diskSpace;
+                    //     console.log(memory)
 
-                        res.render('admin/dashboard', { data, admin, Admin, video, memory, title: "dashboard" });
 
-                    })
+                    // })
+                    res.render('admin/dashboard', { data, admin, Admin, video, title: "dashboard" });
 
                 })
 

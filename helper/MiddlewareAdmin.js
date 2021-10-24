@@ -13,7 +13,6 @@ const MdAdmin = (req, res, next) => {
             if (session !== undefined) {
                 next();
             }else{
-                next();
             }
 
         }else{

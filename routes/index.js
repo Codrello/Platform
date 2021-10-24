@@ -13,16 +13,16 @@ router.get('/', function (req, res, next) {
 /* GET home page. */
 router.get('/list', Login, function (req, res, next) {
 
-  const user = req.user;
+  // const user = req.user;
   // const token = req.token
   const decod = req.decoded.user._id
   // console.log(decod)
-  User.findById(decod, (err, dec) => {
+  User.findById(decod, (err, user) => {
     if (err) {
       console.log(err)
 
     }
-    res.json({ dec });
+    res.json({ user });
 
   })
   // res.render("list", {user})
