@@ -5,7 +5,8 @@ block content
         if errors 
           each error, i in errors
             div(class="alert alert-danger") #{error.msg}
-        form.row.g-3.needs-validation(action="/Reg"  method="post" enctype="multipart/form-data")
+            //enctype="multipart/form-data"
+        form.row.g-3.needs-validation(action="/Reg"  method="post" )
           .col-md-4.position-relative
             label.form-label(for='validationTooltip01') Familiyasi 
             input#validationTooltip01.form-control(name="Surname" type='text' required )
@@ -121,7 +122,7 @@ block content
             .input-group-text
               input.form-check-input(name="Course" type='checkbox' value='G‘aznachilik boshqarmasi va g‘aznachilik bo‘linmalari boshliqlari' aria-label='Checkbox for following text input')
             input.form-control(type='text' value="G‘aznachilik boshqarmasi va g‘aznachilik bo‘linmalari boshliqlari" aria-label='Text input with checkbox')
-          .custom-file
+          //.custom-file
             input#customFile(name="file" accept="image/*" type='file')
             br
             br

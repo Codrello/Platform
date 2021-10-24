@@ -76,10 +76,10 @@ const User = new Schema({
         type: Array,
         required: true
     },
-    UserImg: {
-        type: String,
-        required: true
-    },
+    // UserImg: {
+    //     type: String,
+    //     required: true
+    // },
     Date:{
         type: String
     },

@@ -118,21 +118,21 @@ router.post('/Edit/:id', function (req, res, next) {
 
 });
 
-const Userupload = {
-  storage: multer.diskStorage({
-    destination: function (req, file, next) {
-      next(null, './public/images/userimg/upload');
-    },
-    filename: function (req, file, next) {
-      next(null, Date.now() + path.extname(file.originalname))
-    },
+// const Userupload = {
+//   storage: multer.diskStorage({
+//     destination: function (req, file, next) {
+//       next(null, './public/images/userimg/upload');
+//     },
+//     filename: function (req, file, next) {
+//       next(null, Date.now() + path.extname(file.originalname))
+//     },
 
-  })
+//   })
 
-};
+// };
 
-/* POST users listing  */
-router.post('/Reg', multer(Userupload).single("file", {maxCount: 1}), function (req, res, next) {
+  /* POST users listing  multer(Userupload).single("file", {maxCount: 1}),  */
+router.post('/Reg', function (req, res, next) {
   const name = req.body.name;
   const Surname = req.body.Surname;
   const Fathname = req.body.Fathname;
@@ -172,7 +172,6 @@ router.post('/Reg', multer(Userupload).single("file", {maxCount: 1}), function (
   req.checkBody('Lavoz', `Lavozimlarni kriritishingz kerak`).notEmpty();
   req.checkBody('Course', `Kurslaringizni belgilashingiz kerak`).notEmpty();
   const errors = req.validationErrors();
-  const path = "/images/userimg/upload\\" + req.file.filename;
 
   if (errors) {
     res.json({
@@ -201,7 +200,7 @@ router.post('/Reg', multer(Userupload).single("file", {maxCount: 1}), function (
       Division: Bol,
       Position: Lavoz,
       Courses: Course,
-      UserImg: path,
+      // UserImg: path,
       type: "User",
       token: "",
       Date: Data

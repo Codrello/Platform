@@ -143,39 +143,39 @@ router.get('/Admininf', MdAdmin, function (req, res, next) {
     })
 
 });
-router.get('/Contract', MdAdmin, function (req, res, next) {
-    Admins.find({}, (err, Admin) => {
-        if (err) {
-            console.log(err);
+// router.get('/Contract', MdAdmin, function (req, res, next) {
+//     Admins.find({}, (err, Admin) => {
+//         if (err) {
+//             console.log(err);
 
-        }
+//         }
 
-        Contract.find({}, (err, contr) => {
-            const admin = req.user;
-            if (err) {
-                console.log(err);
+//         Contract.find({}, (err, contr) => {
+//             const admin = req.user;
+//             if (err) {
+//                 console.log(err);
 
-            }
-            else{
-            contr.forEach(contra => {
-                User.find({_id: contra.Userid}, (err, users) => {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        // console.log(users)
-                        users.forEach(data => {
-                            console.log(data)
-                            res.render('admin/Contract', { data, admin, Admin, contr, title: "Contract" });
-                        });
-                    }
+//             }
+//             else{
+//             contr.forEach(contra => {
+//                 User.find({_id: contra.Userid}, (err, users) => {
+//                     if (err) {
+//                         console.log(err);
+//                     } else {
+//                         // console.log(users)
+//                         users.forEach(data => {
+//                             console.log(data)
+//                             res.render('admin/Contract', { data, admin, Admin, contr, title: "Contract" });
+//                         });
+//                     }
     
-                })
-            })}
+//                 })
+//             })}
 
-        })
-    })
+//         })
+//     })
 
-});
+// });
 
 // POST
 
@@ -338,7 +338,7 @@ router.post('/Contract/:id', function (req, res, next) {
         res.redirect("/admin/Contract");
       }
     })
-  });
+});
 
 
 
