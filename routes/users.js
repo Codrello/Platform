@@ -174,9 +174,10 @@ router.post('/Reg', function (req, res, next) {
   const errors = req.validationErrors();
 
   if (errors) {
-    res.json({
+    res.status(400).json({
       errors: errors,
-      success: false
+      success: false,
+      status: 400
     })
   }
 
@@ -302,7 +303,7 @@ router.post('/contr/:id', multer(ContractUpl).single("file", { maxCount: 1 }), f
       console.log(err);
     }
     console.log(cont);
-    res.redirect("/Allvid");
+    res.send("Admin qoshishini kuting");
 
   })
 

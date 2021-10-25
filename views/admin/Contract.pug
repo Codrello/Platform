@@ -21,37 +21,48 @@ block content
                             i.fas.fa-search
                   // /.card-header
                   .card-body.table-responsive.p-0(style='height: 700px;')
-                    table.table.table-head-fixed.text-nowrap
-                      thead
-                        tr
-                          th №
-                          th UserID
-                          th Cardholder
-                          th time applied
-                          th ContractImg
-                          th Permission
-                          //th Division
-                          //th Position
-                          //th UserImage
-                      tbody
-                        each val, i in contr
+                    if notContr
+                      div(style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 100px;")
+                        i.far.fa-handshake(style="font-size: 100px; color: #d2d6de;")
+                        h1(style="font-weight: 700; font-size: 50px;")=notContr
+                    else
+                      table.table.table-head-fixed.text-nowrap
+                        thead
                           tr
-                            td=i
-                            td=val.Userid
-                            td.nameUsr=val.Cardholder
-                            td=val.Date
-                            td(style="padding:0; background:#17a2b8;")
-                              a(href=val.ContractImg download style="cursor: pointer; display: flex; justify-content: center; align-items: center;")
-                                i.fas.fa-cloud-download-alt(style="color: white; font-size: 20px;")
-                                pre(style="color: white;margin: 0;font-size: 17px; font-weight: 700;")  Download
-                            - const txt = "616afe9c8eb03b7a6c997d59"
-                            if data.token !== val.Userid
-                              td(style="padding:0; background:#007bff;") 
-                                form(action="/admin/Contract/"+ val.Userid method="post" style="text-align: center;")
-                                  button.btn.btn-app.bg-primary(style="border: none; margin: 0; padding: 0; min-width: 100%;")
-                                    i.fas.fa-user-plus(style="font-size: 25px;")
-                            else
-                              td(style="padding:0; background:#28a745;") 
-                                  button.btn.btn-app.bg-success(style="border: none; margin: 0; padding: 0; min-width: 100%;")
-                                    i.fas.fa-user-check(style="font-size: 25px;")
+                            th №
+                            th UserID
+                            th Cardholder
+                            th time applied
+                            th ContractImg
+                            th Permission
+                            //th Division
+                            //th Position
+                            //th UserImage
+                        tbody
+                          each val, i in contr
+                            tr
+                              td=i
+                              td=val.Userid
+                              td.nameUsr=val.Cardholder
+                              td=val.Date
+                              td(style="padding:0; background:#17a2b8;")
+                                a(href=val.ContractImg download style="cursor: pointer; display: flex; justify-content: center; align-items: center;")
+                                  i.fas.fa-cloud-download-alt(style="color: white; font-size: 20px;")
+                                  pre(style="color: white;margin: 0;font-size: 17px; font-weight: 700;")  Download
+                              //- const txt = "616afe9c8eb03b7a6c997d59"                            
+                              each data in users
+                                if data._id == val.Userid
+                                  //p=data
+                                  if data.token != val.Userid
+                                    td(style="padding:0; background:#007bff;") 
+                                      form(action="/admin/Contract/"+ val.Userid method="post" style="text-align: center;")
+                                        button.btn.btn-app.bg-primary(style="border: none; margin: 0; padding: 0; min-width: 100%;")
+                                          i.fas.fa-user-plus(style="font-size: 25px;")
+                                  else
+                                    td(style="padding:0; background:#28a745;") 
+                                        button.btn.btn-app.bg-success(style="border: none; margin: 0; padding: 0; min-width: 100%;")
+                                          i.fas.fa-user-check(style="font-size: 25px;")
+                                //else
+                                  td(style="padding:0; background:#dc3545; text-align: center;")
+                                    i.fas.fa-user-times(style="font-size: 25px; padding-top: 12px;")
       include adminfooter

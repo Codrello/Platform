@@ -2,7 +2,8 @@ extends layout
 
 block content
     h1 shartnoma tuzish
-    form(action="/contr/"+ user._id method="post" enctype="multipart/form-data")
+    - const id = "617472cc6c83d08dc043150c"
+    form(action="/contr/"+ id method="post" enctype="multipart/form-data")
       .mb-3
         label.form-label(for='exampleInputEmail1') Karta raqami
         input#exampleInputEmail1.form-control(name="contrKr" type='text' aria-describedby='emailHelp')

@@ -143,63 +143,57 @@ router.get('/Admininf', MdAdmin, function (req, res, next) {
     })
 
 });
-// router.get('/Contract', MdAdmin, function (req, res, next) {
-//     Admins.find({}, (err, Admin) => {
-//         if (err) {
-//             console.log(err);
+router.get('/Contract', MdAdmin, function (req, res, next) {
+    Admins.find({}, (err, Admin) => {
+        if (err) {
+            console.log(err);
 
-//         }
+        }
 
-//         Contract.find({}, (err, contr) => {
-//             const admin = req.user;
-//             if (err) {
-//                 console.log(err);
+        Contract.find({}, (err, contr) => {
+            if (err) {
+                console.log(err);
 
-//             }
-//             else{
-//             contr.forEach(contra => {
-//                 User.find({_id: contra.Userid}, (err, users) => {
-//                     if (err) {
-//                         console.log(err);
-//                     } else {
-//                         // console.log(users)
-//                         users.forEach(data => {
-//                             console.log(data)
-//                             res.render('admin/Contract', { data, admin, Admin, contr, title: "Contract" });
-//                         });
-//                     }
-    
-//                 })
-//             })}
+            }
+            if (contr.length === 0) {
+                const admin = req.user;
+                const notContr = "Shartnoma yoq"
+                res.render('admin/Contract', { notContr, admin, Admin, title: "Contract" });
 
-//         })
-//     })
+            }
+            else {
+                // contr.forEach(contra => {
+                //     // console.log(contra.Userid)
 
-// });
+
+                // })
+                User.find({}, "token", (err, users) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        const admin = req.user;
+                        // console.log(users)
+                        // if (users.length === 0) {
+                        //     const notUsr = "User yoq"
+                        //     res.render('admin/Contract', { notUsr, admin, Admin, contr, title: "Contract" });
+
+                        // } else {
+
+                        // }
+                        res.render('admin/Contract', { users, admin, Admin, contr, title: "Contract" });
+
+
+                    }
+
+                })
+            }
+
+        })
+    })
+
+});
 
 // POST
-
-// router.post('/',
-
-//   passport.authenticate("Admin", { session: false }),
-//   function (req, res) {
-//     const user = req.user;
-//     if (res.status !== 401) {
-//       const body = { _id: user._id, username: user.username };
-//       const payload = {user: body};
-//       const token = jwt.sign(payload, config.secret_key, {
-//         expiresIn: 86400
-//         //86400 bir kungi vaqt sikunda
-//       })
-//       res.json({user, token: token, success: true});
-//     }
-//     else if (res.status(401) == 401) {
-//       res.json({ message: { success: false } });
-//     }
-
-//   },
-// );
-
 
 router.post('/', function (req, res, next) {
 
@@ -325,18 +319,18 @@ router.post('/AddLessons', multer(VideoUpl).single("file", { maxCount: 1 }), fun
 
 router.post('/Contract/:id', function (req, res, next) {
     const token = req.params.id;
-  
+
     const addToken = {
-      token,
+        token,
     }
     const quer = { _id: req.params.id };
     User.findByIdAndUpdate(quer, addToken, (err, doc) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(doc);
-        res.redirect("/admin/Contract");
-      }
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(doc);
+            res.redirect("/admin/Contract");
+        }
     })
 });
 
