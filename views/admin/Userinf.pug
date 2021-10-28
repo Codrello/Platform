@@ -13,9 +13,27 @@ block content
                 .card
                   .card-header
                     h3.card-title Users Information
-                    .card-tools
+                    .card-tools(style="display: flex;justify-content: center;align-items: center;")
+                      .dropdown
+                        button#dropdownMenuButton.btn.btn-primary.dropdown-toggle(style="line-height: normal;text-align: center; padding: 4px 10px;" type='button' data-toggle='dropdown' aria-expanded='false')
+                          span(style="margin-right: 10px;") Select for Search 
+                        ul.dropdown-menu(aria-labelledby='dropdownMenuButton')
+                          li
+                            a.dropdown-item.User.drpdActiv User
+                          li
+                            a.dropdown-item.Email Email
+                          //li
+                            a.dropdown-item.Workph Workph
+                          li
+                            a.dropdown-item.Division Division
+                          li
+                            a.dropdown-item.Position Position
                       .input-group.input-group-sm(style='width: 150px;')
                         input.form-control.float-right(id="inpSearch" type='text' name='table_search' placeholder='User Search')
+                        input.form-control.float-right(id="inpSearch2" type='text' name='table_search' placeholder='Email Search')
+                        input.form-control.float-right(id="inpSearch3" type='text' name='table_search' placeholder='Workph Search')
+                        input.form-control.float-right(id="inpSearch4" type='text' name='table_search' placeholder='Division Search')
+                        input.form-control.float-right(id="inpSearch5" type='text' name='table_search' placeholder='Position Search')
                         .input-group-append
                           button.btn.btn-default(type='submit')
                             i.fas.fa-search
@@ -42,24 +60,192 @@ block content
                             td.nameUsr=val.name
                             td=val.DateBirth
                             td
-                              span.tag.tag-success=val.Email
-                            td=val.Workph
+                              span.tag.tag-success.nameUsr2=val.Email
+                            td.nameUsr3=val.Workph
                             td=val.Jinsi
-                            td=val.Division
-                            td=val.Position
+                            td.nameUsr4=val.Division
+                            td.nameUsr5=val.Position
                             //td
                               img(src="images/userimg/upload/1634137967391.gif"  style="width: 80px; height:40px;" alt="jpg")
       include adminfooter
 
     script.
       const input = $("#inpSearch")
+      const input2 = $("#inpSearch2")
+      const input3 = $("#inpSearch3")
+      const input4 = $("#inpSearch4")
+      const input5 = $("#inpSearch5")
+      const menyu_a = $(".dropdown-menu .User")
+      const menyu_a2 = $(".dropdown-menu .Email")
+      const menyu_a3 = $(".dropdown-menu .Workph")
+      const menyu_a4 = $(".dropdown-menu .Division")
+      const menyu_a5 = $(".dropdown-menu .Position")
       const td = $(".card-body tbody .nameUsr")
+      const td2 = $(".card-body tbody .nameUsr2")
+      const td3 = $(".card-body tbody .nameUsr3")
+      const td4 = $(".card-body tbody .nameUsr4")
+      const td5 = $(".card-body tbody .nameUsr5")
       const tr = $(".card-body tbody tr")
       const btn = $(".btn-default")
-      console.log(input);
-      console.log(td);
-      console.log(tr);
-      console.log(btn);
+      //- console.log(input)
+      //- console.log(td)
+      //- console.log(tr)
+      //- console.log(btn)
+      const body = $("body")
+      body.on("click", () => {
+        ul.slideUp()
+      })
+      const dropdown = $(".dropdown-toggle")
+      const ul = $(".dropdown-menu")
+      dropdown.on("click", () => {
+        ul.slideToggle()
+      })
+
+      input2.hide()
+      input3.hide()
+      input4.hide()
+      input5.hide()
+
+      menyu_a.on("click", () => {
+        menyu_a.addClass("drpdActiv")
+        menyu_a2.removeClass("drpdActiv")
+        menyu_a3.removeClass("drpdActiv")
+        menyu_a4.removeClass("drpdActiv")
+        menyu_a5.removeClass("drpdActiv")
+        ul.slideUp()
+        input.show()
+        input2.hide()
+        input3.hide()
+        input4.hide()
+        input5.hide()
+        input.on("input", () => {
+          var filter = input.val().toLowerCase()
+          for (var i = 0; i < td.length; i++) {
+            var tds = td[i].innerHTML;
+            tds = tds.toLowerCase();
+
+            if (tds.search(filter)) {
+              tr[i].classList.add("hide");
+
+            } else {
+              tr[i].classList.remove("hide");
+
+            }
+          }
+        })
+      })
+      menyu_a2.on("click", () => {
+        menyu_a.removeClass("drpdActiv")
+        menyu_a2.addClass("drpdActiv")
+        menyu_a3.removeClass("drpdActiv")
+        menyu_a4.removeClass("drpdActiv")
+        menyu_a5.removeClass("drpdActiv")
+        ul.slideUp()
+        input.hide();
+        input2.show();
+        input3.hide();
+        input4.hide();
+        input5.hide();
+        input2.on("input", () => {
+          var filter = input2.val().toLowerCase();
+          for (var i = 0; i < td2.length; i++) {
+            var tds = td2[i].innerHTML;
+            tds = tds.toLowerCase();
+
+            if (tds.search(filter)) {
+              tr[i].classList.add("hide");
+
+            } else {
+              tr[i].classList.remove("hide");
+
+            }
+          }
+        })
+      })
+      menyu_a3.on("click", () => {
+        menyu_a.removeClass("drpdActiv")
+        menyu_a2.removeClass("drpdActiv")
+        menyu_a3.addClass("drpdActiv")
+        menyu_a4.removeClass("drpdActiv")
+        menyu_a5.removeClass("drpdActiv")
+        ul.slideUp()
+        input.hide();
+        input2.hide();
+        input3.show();
+        input4.hide();
+        input5.hide();
+        input3.on("input", () => {
+          var filter = input3.val().toLowerCase();
+          for (var i = 0; i < td3.length; i++) {
+            var tds = td3[i].innerHTML;
+            tds = tds.toLowerCase();
+
+            if (tds.search(filter)) {
+              tr[i].classList.add("hide");
+
+            } else {
+              tr[i].classList.remove("hide");
+
+            }
+          }
+        })
+      })
+      menyu_a4.on("click", () => {
+        menyu_a.removeClass("drpdActiv")
+        menyu_a2.removeClass("drpdActiv")
+        menyu_a3.removeClass("drpdActiv")
+        menyu_a4.addClass("drpdActiv")
+        menyu_a5.removeClass("drpdActiv")
+        ul.slideUp()
+        input.hide();
+        input2.hide();
+        input3.hide();
+        input4.show();
+        input5.hide();
+        input4.on("input", () => {
+          var filter = input4.val().toLowerCase();
+          for (var i = 0; i < td4.length; i++) {
+            var tds = td4[i].innerHTML;
+            tds = tds.toLowerCase();
+
+            if (tds.search(filter)) {
+              tr[i].classList.add("hide");
+
+            } else {
+              tr[i].classList.remove("hide");
+
+            }
+          }
+          })
+      })
+      menyu_a5.on("click", () => {
+        menyu_a.removeClass("drpdActiv")
+        menyu_a2.removeClass("drpdActiv")
+        menyu_a3.removeClass("drpdActiv")
+        menyu_a4.removeClass("drpdActiv")
+        menyu_a5.addClass("drpdActiv")
+        ul.slideUp()
+        input.hide();
+        input2.hide();
+        input3.hide();
+        input4.hide();
+        input5.show();
+        input5.on("input", () => {
+          var filter = input5.val().toLowerCase();
+          for (var i = 0; i < td5.length; i++) {
+            var tds = td5[i].innerHTML;
+            tds = tds.toLowerCase();
+
+            if (tds.search(filter)) {
+              tr[i].classList.add("hide");
+
+            } else {
+              tr[i].classList.remove("hide");
+
+            }
+          }
+        })
+      })
       input.on("input", () => {
         var filter = input.val().toLowerCase();
         for (var i = 0; i < td.length; i++) {
@@ -73,5 +259,5 @@ block content
             tr[i].classList.remove("hide");
 
           }
-      }
+        }
       })

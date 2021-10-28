@@ -1694,6 +1694,16 @@ pre code {
   background-color: transparent;
 }
 
+a{
+  cursor: pointer !important;
+}
+
+.drpdActiv{
+  color: white !important;
+  background: #007bff !important;
+}
+
+
 .table th,
 .table td {
   padding: 0.75rem;
