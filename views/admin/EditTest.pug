@@ -1,0 +1,30 @@
+extends adminLay
+block content
+    body
+                section.content
+                    .container-fluid
+                        br
+                        br
+                        .row
+                            .col-md-12
+                                each Test in test
+                                    form.card.card-warning(action='/admin/Edit/' + Test._id method='post')
+                                      .card-header
+                                        h3.card-title Edit Test
+                                      .card-body                                    
+                                        .input-group.mb-3
+                                          .input-group-prepend
+                                            span.input-group-text 
+                                                i.fas.fa-chalkboard-teacher
+                                          input.form-control(name="mavzuUpd" type='text' placeholder='Mavzu' value=Test.subject)
+                                        .input-group.mb-3
+                                          .input-group-prepend
+                                            span.input-group-text 
+                                                i.fas.fa-vial
+                                          input.form-control(style="height:50px;" name="TestUpd" type='text' placeholder='Test' value=Test.test)
+                                        br
+                                        .social-auth-links.text-center.mt-2.mb-3
+                                              button.btn.btn-block.btn-warning
+                                                i.fas.fa-pen.mr-2
+                                                |  Edit
+                        

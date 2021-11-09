@@ -1,0 +1,88 @@
+extends adminLay
+block content
+    body.hold-transition.sidebar-mini.layout-fixed
+        .wrapper
+            include adminheader
+            .content-wrapper
+                section.content
+                    .container-fluid
+                        br
+                        .row
+                            .col-md-12
+                                form.card.card-warning(action='/admin/AddTest' method='post')
+                                  .card-header
+                                    h3.card-title Add Test
+                                  .card-body
+                                    .input-group.mb-3
+                                      .input-group-prepend
+                                        span.input-group-text 
+                                            i.fas.fa-chalkboard-teacher
+                                      input.form-control(name="Testmavzu" type='text' placeholder='Mavzu')
+                                    .input-group.mb-3
+                                      .input-group-prepend
+                                        span.input-group-text 
+                                            i.fas.fa-vial
+                                      textarea.form-control(style="height:120px;" name="Test" type='text' placeholder='Test')
+                                    .input-group.mb-3
+                                      .input-group-prepend
+                                        span.input-group-text 
+                                            i.far.fa-check-circle
+                                      textarea.form-control(style="height:50px;" name="answer" type='text' placeholder="Testning To'g'ri jovobini kriting")
+                                    p.text-warning(style="margin: 0;margin-left: 12px;font-size: 15px;font-weight: 700;display: flex; align-items: center;") 
+                                      i.fas.fa-exclamation-circle(style="padding-right: 6px;font-size: 20px;")
+                                      |Eslatma hamma noto'g'ri jovoblar bir xil bolishi kerak emas
+                                    .input-group.mb-3
+                                      .input-group-prepend
+                                        span.input-group-text 
+                                            i.far.fa-times-circle
+                                      textarea.form-control(style="height:50px;" name="answer" type='text' placeholder="Testning birinchi Noto'g'ri jovobini kriting")
+                                    p.text-warning(style="margin: 0;margin-left: 12px;font-size: 15px;font-weight: 700;display: flex; align-items: center;") 
+                                      i.fas.fa-exclamation-circle(style="padding-right: 6px;font-size: 20px;")
+                                      |Eslatma hamma noto'g'ri jovoblar bir xil bolishi kerak emas
+                                    .input-group.mb-3
+                                      .input-group-prepend
+                                        span.input-group-text 
+                                            i.far.fa-times-circle
+                                      textarea.form-control(style="height:50px;" name="answer" type='text' placeholder="Testning ikkinchi Noto'g'ri jovobini kriting")
+                                    p.text-warning(style="margin: 0;margin-left: 12px;font-size: 15px;font-weight: 700;display: flex; align-items: center;") 
+                                      i.fas.fa-exclamation-circle(style="padding-right: 6px;font-size: 20px;")
+                                      |Eslatma hamma noto'g'ri jovoblar bir xil bolishi kerak emas
+                                    .input-group.mb-3
+                                      .input-group-prepend
+                                        span.input-group-text 
+                                            i.far.fa-times-circle
+                                      textarea.form-control(style="height:50px;" name="answer" type='text' placeholder="Testning uchinchi Noto'g'ri jovobini kriting")
+                                    br
+                                    .social-auth-links.text-center.mt-2.mb-3
+                                          button.btn.btn-block.btn-warning
+                                            i.fas.fa-upload.mr-2
+                                            |  Send
+                        .row
+                          .col-md-12
+                            .card
+                              .card-header
+                                h3.card-title Testlar Ro'yxati
+                              // /.card-header
+                              .card-body
+                                #accordion
+                                    - let colors = ["bg-secondary", "bg-primary", "bg-black", "bg-gray-dark", "bg-indigo", "bg-lightblue", "bg-navy", "bg-purple", "bg-fuchsia", "bg-pink", "bg-maroon", "bg-orange", "bg-lime", "bg-teal", "bg-olive"]
+                                    - let colors_badge = ["bg-olive", "bg-teal", "bg-lime", "bg-orange", "bg-maroon", "bg-pink", "bg-fuchsia", "bg-purple", "bg-navy", "bg-lightblue", "bg-indigo", "bg-gray-dark", "bg-black", "bg-primary", "bg-secondary"]
+                                    each Tests, i in test
+                                      .card(class=colors[i])
+                                        .card-header
+                                          h4.card-title.w-100(style="display:flex;justify-content: space-around;")
+                                            a.d-block.w-100(style="color: white;font-weight: 700;" data-toggle='collapse' href=`#collapse${i}`)=Tests.subject
+                                            .btns(style="width:10%;display:flex;justify-content: space-around;")
+                                                a.btn.btn-warning(href="/admin/EditTest/" + Tests._id)
+                                                    i.fas.fa-pen
+                                                a.btn.btn-danger(href="/admin/Delete/" + Tests._id)
+                                                    i.far.fa-trash-alt
+                                        .collapse(id=`collapse${i}` data-parent='#accordion')
+                                          .card-body=Tests.test
+                                            br
+                                            br
+                                            - for(let i =0; i < Tests.answer.length;i++)
+                                              .alert(style="font-weight:700;" class=colors_badge[i])=Tests.answer[i]
+                                  
+                                  
+            include adminfooter

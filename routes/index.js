@@ -5,6 +5,7 @@ const Allvid = require("../helper/AllvidMiddleware")
 const Passport = require("../passport/passport")
 const User = require("../model/Users")
 const Video = require("../model/Video")
+const Test = require("../model/Tests")
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -45,6 +46,22 @@ router.get('/Allvid', Allvid, function (req, res, next) {
 
   res.send("Hamma videolar");
   // res.render("list", {user})
+});
+router.get('/Sertificat', function (req, res, next) {
+
+  // const user = req.user;
+  
+  res.render("Sertificat")
+});
+router.get('/AllTests', function (req, res, next) {
+  Test.find((err,tests) => {
+    if(err){
+      res.json(err);
+    }
+    console.log(tests)
+    res.json(tests);
+  })
+  
 });
 
 

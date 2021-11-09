@@ -4,6 +4,7 @@ const path = require("path");
 const User = require("../model/Users")
 const Admins = require("../model/admins")
 const Video = require("../model/Video")
+const Test = require("../model/Tests")
 const Contract = require("../model/Contract")
 const moment = require("moment");
 const Data = moment().format('YYYY.MM.DD/h:mm:a');
@@ -43,6 +44,52 @@ router.get('/Addvid', MdAdmin, function (req, res, next) {
     })
 
 
+});
+router.get('/AddTest', MdAdmin, function (req, res, next) {
+    const admin = req.user;
+    User.find({}, (err, data) => {
+        if (err) {
+            console.log(err);
+        } else {
+            Admins.find({}, (err, Admin) => {
+                if (err) {
+                    console.log(err)
+                }
+                Test.find({}, (err, test) => {
+                    if (err) {
+                        console.log(err)
+                    }
+                    res.render('admin/AddTest', { data, admin, Admin, test, title: "AddTest" });
+                })
+                
+            })
+        }
+
+    })
+
+
+});
+router.get('/EditTest/:id', MdAdmin, function (req, res, next) {
+    const admin = req.user;
+    Test.find({_id: req.params.id}, (err, test) => {
+        if (err) {
+            console.log(err)
+        }
+        res.render('admin/EditTest', {admin, test});
+    })
+
+
+});
+router.get('/Delete/:id', function (req, res, next) {
+    // const query = {  };
+  Test.findOneAndDelete({_id: req.params.id}, (err) => {
+    if (err) {
+      console.log(err);
+    } else {      
+      res.redirect("/admin/AddTest");
+
+    }
+    })
 });
 router.get('/Lessons', MdAdmin, function (req, res, next) {
     User.find({}, (err, data) => {
@@ -218,7 +265,43 @@ const multerConf = {
 
 };
 
+router.post('/AddTest', function (req, res, next) {
+      
+    const Tests = new Test({
+        subject: req.body.Testmavzu,
+        test: req.body.Test,
+        answer: req.body.answer,
+    });
 
+    Tests.save((err,data) => {
+        if(err){
+            console.log(err);
+        }
+        // console.log(data);
+        res.redirect("/admin/AddTest")
+    })
+
+});
+
+router.post('/Edit/:id', function (req, res, next) {
+    const admin = req.user;
+    const subject = req.body.mavzuUpd;
+    const test = req.body.TestUpd;
+    const form = {
+        subject,
+        test
+    }
+    const query = {_id: req.params.id};
+    Test.findByIdAndUpdate(query, form, (err, test) => {
+        if (err) {
+            console.log(err)
+        }
+        console.log(test);
+        res.redirect('/admin/AddTest');
+    })
+
+
+});
 
 router.post('/Adminreg', multer(multerConf).single("file", { maxCount: 1 }), function (req, res, next) {
 

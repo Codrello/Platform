@@ -11,7 +11,7 @@ block content
               a.h1(href='/admin/Adminreg')
                 b Add admin
             .card-body
-              p.login-box-msg Register a new membership
+              p.login-box-msg Admin qo'shish
               form(action='/admin/Adminreg' method='post' enctype="multipart/form-data")
                 .input-group.mb-3
                   input.form-control(name="AdminName" type='text' placeholder='Name')
@@ -29,6 +29,7 @@ block content
                     .input-group-text
                       span.fas.fa-lock
                 .custom-file
+                  label Rasm qo'shish shart
                   input#customFile(name="file" accept="image/*" type='file')
                 br
                 br
